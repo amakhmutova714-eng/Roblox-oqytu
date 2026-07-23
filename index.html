@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox Studio — Қазақша оқулық</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+
+<!-- Animated background -->
+<div class="bg-grid"></div>
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon"><svg data-lucide="gamepad-2"></svg></div>
+    <span id="nav-logo-text"></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" id="nav-home" class="active" onclick="showPage('bas'); return false;"></a></li>
+    <li><a href="#sabaqtar" id="nav-lessons" onclick="showPage('sabaqtar'); return false;"></a></li>
+    <li><a href="#aniqtama" id="nav-ref" onclick="showPage('aniqtama'); return false;"></a></li>
+    <li><a href="#turaly" id="nav-about" onclick="showPage('turaly'); return false;"></a></li>
+  </ul>
+</nav>
+
+<!-- ═══ БАС БЕТ ════════════════════════════════════════════ -->
+<div id="page-bas" class="page active">
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><svg data-lucide="map-pin" style="width:13px;height:13px"></svg> Қазақша &nbsp;•&nbsp; Тегін &nbsp;•&nbsp; Нөлден</div>
+      <h1 id="hero-title"></h1>
+      <p id="hero-desc"></p>
+      <a href="#sabaqtar" class="btn-primary" id="hero-cta" onclick="showPage('sabaqtar'); return false;"></a>
+    </div>
+
+    <div class="hero-chars">
+      <img src="images/char_group.png" alt="Roblox characters" class="hero-char-main">
+    </div>
+  </section>
+
+  <div class="stats">
+    <div id="stats-wrap" style="display:flex;gap:3.5rem;flex-wrap:wrap;justify-content:center;"></div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="section-title">Не үйренесің?</div>
+      <div class="section-sub">4 бөлім — орнатудан жариялауға дейін</div>
+      <div class="chapters-grid" id="chapters-grid"></div>
+    </div>
+  </section>
+
+  <!-- STUDENT GAMES -->
+  <section id="student-games-section">
+    <div class="container">
+      <div class="section-title">Оқушылардың ойындары</div>
+      <div class="section-sub">Курсты аяқтаған оқушылар жасаған нақты ойындар — осы сайтта жарияланады</div>
+      <div class="student-games-grid" id="student-games-grid"></div>
+      <div class="student-games-cta">
+        <div class="sgcta-text">Сенің ойының да осында болуы мүмкін</div>
+        <a href="#sabaqtar" class="btn-primary" onclick="showPage('sabaqtar'); return false;">
+          <svg data-lucide="play"></svg> Оқуды бастау
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials-section">
+    <div class="container">
+      <div class="section-title">Пікірлер</div>
+      <div class="section-sub">Оқушылардың нақты пікірлері</div>
+      <div id="testimonials-grid"></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing-section">
+    <div class="container">
+      <div class="section-title">Баға</div>
+      <div class="section-sub">3 күн тегін — содан кейін видео сабақтар + сұрақ-жауап кіреді</div>
+      <div class="pricing-grid">
+
+        <!-- FREE TRIAL -->
+        <div class="pricing-card">
+          <div class="pricing-label">Тегін сынақ</div>
+          <div class="pricing-price">0 ₸</div>
+          <div class="pricing-period">3 күн</div>
+          <ul class="pricing-features">
+            <li><svg data-lucide="check"></svg> Барлық 15 сабақ</li>
+            <li><svg data-lucide="check"></svg> Дайын кодтар (0–10)</li>
+            <li><svg data-lucide="check"></svg> Анықтама беті</li>
+            <li><svg data-lucide="check"></svg> AI Промпттар</li>
+          </ul>
+          <a href="#sabaqtar" class="pricing-btn pricing-btn-ghost" onclick="showPage('sabaqtar'); return false;">
+            Тегін бастау
+          </a>
+        </div>
+
+        <!-- FULL ACCESS -->
+        <div class="pricing-card pricing-card-featured">
+          <div class="pricing-badge-featured">Ең жақсы таңдау</div>
+          <div class="pricing-label">Толық қол жетімділік</div>
+          <div class="pricing-price">3 490 <span class="pricing-currency">₸</span></div>
+          <div class="pricing-period">бір рет төлем • мәңгілік қол жетімділік</div>
+          <ul class="pricing-features">
+            <li><svg data-lucide="check"></svg> Барлық 15 сабақ</li>
+            <li><svg data-lucide="check"></svg> Видео сабақтар</li>
+            <li><svg data-lucide="check"></svg> Сұрақтарға жауап беру</li>
+            <li><svg data-lucide="check"></svg> Дайын кодтар (0–10)</li>
+            <li><svg data-lucide="check"></svg> AI Промпттар</li>
+            <li><svg data-lucide="check"></svg> Жаңа сабақтар (тегін)</li>
+            <li><svg data-lucide="check"></svg> Ойының сайтта жарияланады</li>
+            <li><svg data-lucide="check"></svg> Graduation Pack (5 эксклюзив скрипт)</li>
+          </ul>
+          <a href="https://wa.me/77052506772?text=Сәлем!%20Roblox%20Studio%20курсын%20сатып%20алғым%20келеді%20(3%20490%20₸)" target="_blank" class="pricing-btn pricing-btn-primary">
+            Сатып алу — WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq-section">
+    <div class="container">
+      <div class="section-title">Жиі қойылатын сұрақтар</div>
+      <div class="faq-list" id="faq-list"></div>
+      <div class="faq-cta">
+        Жауап таппадың ба? &nbsp;
+        <a href="https://wa.me/77052506772" target="_blank" class="faq-wa-link">
+          <svg data-lucide="message-circle"></svg> WhatsApp арқылы жаз
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══ САБАҚТАР ═══════════════════════════════════════════ -->
+<div id="page-sabaqtar" class="page">
+  <div class="page-hero">
+    <h1>Сабақтар</h1>
+    <p>Сол жақтан сабақ таңда</p>
+  </div>
+
+  <div class="lessons-layout">
+    <div class="sidebar-wrap">
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>Прогресс: <strong id="progress-count">0 / 15</strong></span>
+          <span id="progress-pct">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="sidebar" id="sidebar"></div>
+    </div>
+
+    <div class="lesson-area">
+      <div id="lesson-placeholder" class="lesson-placeholder">
+        <img src="images/char1.png" alt="" class="placeholder-char">
+        <h3>Сол жақтан сабақ таңда</h3>
+        <p>15 сабақ • Lua код + видео + кеңестер</p>
+      </div>
+
+      <div id="lesson-view" style="display:none;">
+        <div class="lesson-header">
+          <div class="lesson-meta">
+            <span class="lesson-badge" id="lv-badge"></span>
+            <span class="lesson-duration" id="lv-duration"></span>
+          </div>
+          <h2 id="lv-title"></h2>
+          <p class="lesson-desc" id="lv-desc"></p>
+        </div>
+        <div class="video-wrap" id="lv-video"></div>
+        <div id="lv-steps"></div>
+        <div id="lv-code"></div>
+        <div id="lv-tips"></div>
+        <div id="lv-done" style="margin-bottom:1rem;"></div>
+        <div class="lesson-nav-arrows">
+          <button class="nav-arrow-btn" id="btn-prev" onclick="navigateLesson(-1)" disabled>
+            <svg data-lucide="arrow-left"></svg> Алдыңғы
+          </button>
+          <button class="nav-arrow-btn" id="btn-next" onclick="navigateLesson(1)">
+            Келесі <svg data-lucide="arrow-right"></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ АНЫҚТАМА ════════════════════════════════════════════ -->
+<div id="page-aniqtama" class="page">
+  <div class="page-hero">
+    <h1 id="ref-title"></h1>
+    <p id="ref-sub"></p>
+  </div>
+
+  <!-- TAB BUTTONS -->
+  <div class="ref-tabs-bar" id="ref-tabs-bar"></div>
+
+  <!-- TAB CONTENTS -->
+  <div id="ref-ready" class="ref-tab-content">
+    <div class="scripts-grid" id="scripts-grid"></div>
+  </div>
+
+  <div id="ref-ai" class="ref-tab-content">
+    <div class="prompts-grid" id="prompts-grid"></div>
+  </div>
+
+  <div id="ref-code-req" class="ref-tab-content">
+    <div id="code-req-wrap"></div>
+  </div>
+
+  <div id="ref-grad" class="ref-tab-content">
+    <div class="grad-locked-banner">
+      <div class="grad-lock-icon"><svg data-lucide="lock-keyhole" style="width:32px;height:32px;color:var(--accent3)"></svg></div>
+      <div class="grad-lock-text">
+        <h3>Graduation Pack — тек курсты аяқтағандарға</h3>
+        <p>Барлық 15 сабақты бітіріп, ойыныңды жіберген соң Albina саған бұл 5 эксклюзив скриптті жібереді</p>
+      </div>
+    </div>
+    <div class="grad-scripts-grid" id="grad-scripts-grid"></div>
+  </div>
+</div>
+
+<!-- ═══ ТУРАЛЫ ══════════════════════════════════════════════ -->
+<div id="page-turaly" class="page">
+  <section>
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-char-col">
+          <img src="images/albina.png" alt="Albina M." class="about-char-img albina-char">
+        </div>
+        <div class="about-text-col">
+          <div class="section-title" style="text-align:left;">Сайт туралы</div>
+          <div class="about-card" style="margin-top:1.5rem; text-align:left;">
+            <p id="about-text"></p>
+            <div class="about-author">
+              <div class="author-info">
+                <div class="author-name" id="about-author-name"></div>
+                <div class="author-role" id="about-author-role"></div>
+              </div>
+            </div>
+          </div>
+          <div class="about-facts">
+            <div class="about-fact">
+              <svg data-lucide="map-pin"></svg>
+              <span>Қазақстан</span>
+            </div>
+            <div class="about-fact">
+              <svg data-lucide="briefcase"></svg>
+              <span>Ab-Interactive Company</span>
+            </div>
+            <div class="about-fact">
+              <svg data-lucide="users"></svg>
+              <span>Жас Roblox разработчиктер үшін</span>
+            </div>
+          </div>
+          <div class="about-socials" id="about-socials"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <span id="footer-title"></span> &nbsp;•&nbsp; 3 күн тегін • Одан кейін 3 490 ₸ &nbsp;•&nbsp; <svg data-lucide="map-pin" style="width:13px;height:13px;vertical-align:middle"></svg> Қазақстан
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

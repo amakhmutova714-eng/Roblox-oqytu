@@ -1,0 +1,559 @@
+{
+  "site": {
+    "title": "Roblox Studio — Қазақша",
+    "subtitle": "Өзіңнің Roblox ойынды жаса",
+    "description": "Нөлден бастап қазақша, тегін, қадам-қадам.",
+    "cta": "Оқуды бастау",
+    "nav": {
+      "home": "Басты бет",
+      "lessons": "Сабақтар",
+      "reference": "Анықтама",
+      "about": "Туралы"
+    }
+  },
+  "stats": [
+    { "value": "4", "label": "Бөлім" },
+    { "value": "15", "label": "Сабақ" },
+    { "value": "3 күн", "label": "Тегін сынақ" },
+    { "value": "3 490 ₸", "label": "Толық нұсқа" }
+  ],
+  "chapters": [
+    {
+      "id": "kirispе",
+      "number": 1,
+      "title": "Кіріспе",
+      "description": "Studio орнату, интерфейс",
+      "icon": "rocket",
+      "lessons": [
+        {
+          "id": "01",
+          "title": "Roblox Studio дегеніміз не?",
+          "duration": "5 мин",
+          "description": "Платформа мен редактор туралы жалпы шолу.",
+          "videoId": "PLACEHOLDER_01",
+          "steps": [
+            "Roblox — 380M+ ойыншысы бар платформа",
+            "Roblox Studio — ойын жасайтын тегін редактор",
+            "Lua тілінде жазылған скриптпен программалайсың",
+            "Жарияласаң — миллиондаған адам ойнай алады"
+          ],
+          "tips": [
+            "Studio тек компьютерде жұмыс істейді (Mac / Windows)",
+            "Аккаунт ашу тегін — roblox.com"
+          ]
+        },
+        {
+          "id": "02",
+          "title": "Studio орнату",
+          "duration": "8 мин",
+          "description": "Жүктеп, орнатып, алғашқы рет іске қосу.",
+          "videoId": "PLACEHOLDER_02",
+          "steps": [
+            "create.roblox.com сайтына кір",
+            "'Start Creating' батырмасын бас",
+            "Жүктелген файлды орнат (~5 минут)",
+            "Roblox аккаунтыңмен кір"
+          ],
+          "tips": [
+            "Mac-та да, Windows-та да бірдей жұмыс істейді"
+          ]
+        },
+        {
+          "id": "03",
+          "title": "Интерфейс",
+          "duration": "12 мин",
+          "description": "Explorer, Properties, Toolbar — негізгі панельдер.",
+          "videoId": "PLACEHOLDER_03",
+          "steps": [
+            "Viewport — ойын дүниесін көретін терезе",
+            "Explorer — объектілер иерархиясы",
+            "Properties — таңдалған объектінің қасиеттері",
+            "Toolbar — жоғарыдағы құралдар панелі"
+          ],
+          "tips": [
+            "F — камераны таңдалған объектке бағыттайды",
+            "Ctrl+Z — соңғы әрекетті болдырмайды"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dunje",
+      "number": 2,
+      "title": "Дүние жасау",
+      "description": "Parts, Terrain, материалдар, жарық",
+      "icon": "layers",
+      "lessons": [
+        {
+          "id": "04",
+          "title": "Part — негізгі блок",
+          "duration": "10 мин",
+          "description": "Roblox-тағы кез-келген заттың негізі.",
+          "videoId": "PLACEHOLDER_04",
+          "steps": [
+            "Home → Part — жаңа блок қосу",
+            "W — жылжыту, E — айналдыру, R — өлшемін өзгерту",
+            "Ctrl+G — бірнеше Part-ті топтастыру",
+            "Ctrl+D — объектіні дублей"
+          ],
+          "tips": [
+            "Anchored = true — блокты орнына бекіту",
+            "CanCollide = false — заттар арқылы өту"
+          ]
+        },
+        {
+          "id": "05",
+          "title": "Terrain — жер бедері",
+          "duration": "15 мин",
+          "description": "Табиғи дүние: жер, су, тау.",
+          "videoId": "PLACEHOLDER_05",
+          "steps": [
+            "Home → Editor → Terrain Editor",
+            "Generate — автоматты жер бедері",
+            "Paint — материал бояу (шөп, қар, құм...)",
+            "Sculpt — жерді көтер / түсір"
+          ],
+          "tips": [
+            "Generate — ең жылдам карта жасау жолы"
+          ]
+        },
+        {
+          "id": "06",
+          "title": "Материал мен түс",
+          "duration": "8 мин",
+          "description": "Part-ті визуальді өзгерту.",
+          "videoId": "PLACEHOLDER_06",
+          "steps": [
+            "Properties → Material — 22 материал (Wood, Metal, Neon...)",
+            "Properties → Color — кез-келген RGB түс",
+            "Properties → Transparency — 0 (тұтас) → 1 (көрінбейді)",
+            "Neon материалы — жарқыраған эффект"
+          ],
+          "tips": [
+            "Surface Appearance — PBR текстура, реалистік беткей"
+          ]
+        },
+        {
+          "id": "07",
+          "title": "Lighting — жарық",
+          "duration": "10 мин",
+          "description": "Ойын атмосферасын жарықпен өзгерту.",
+          "videoId": "PLACEHOLDER_07",
+          "steps": [
+            "Workspace → Lighting → Technology: Future (ең жақсы)",
+            "Ambient — жалпы жарық деңгейі",
+            "ColorShift_Day / Night — реңк",
+            "Atmosphere объектісі — тұман, аспан"
+          ],
+          "tips": [
+            "ShadowSoftness = 0.2 — жұмсақ көлеңке"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skripting",
+      "number": 3,
+      "title": "Lua скриптинг",
+      "description": "Ойынды программалау",
+      "icon": "terminal",
+      "lessons": [
+        {
+          "id": "08",
+          "title": "Lua негіздері",
+          "duration": "15 мин",
+          "description": "Айнымалылар, функциялар, шарттар.",
+          "videoId": "PLACEHOLDER_08",
+          "steps": [
+            "Explorer → Part → + → Script — скрипт қосу",
+            "print() — Output терезесіне шығарады",
+            "local — айнымалы жариялайды",
+            "if / then / end — шартты оператор"
+          ],
+          "code": "-- Айнымалылар\nlocal name = \"Albina\"\nlocal score = 0\n\n-- Функция\nlocal function greet(player)\n    print(\"Сәлем, \" .. player .. \"!\")\nend\n\ngreet(name) -- Output: Сәлем, Albina!\n\n-- Шарт\nif score > 10 then\n    print(\"Жеңіс!\")\nelse\n    print(\"Жалғастыр!\")\nend",
+          "tips": [
+            "Output терезесі — View → Output",
+            "-- (екі сызықша) — түсіндірме жол"
+          ]
+        },
+        {
+          "id": "09",
+          "title": "Properties скриптпен",
+          "duration": "12 мин",
+          "description": "Скрипт арқылы объектіні өзгерту.",
+          "videoId": "PLACEHOLDER_09",
+          "steps": [
+            "workspace.PartName — объектіге жол",
+            ".BrickColor — түс қасиеті",
+            ".Position — Vector3 координаты",
+            ".Transparency — мөлдірлік"
+          ],
+          "code": "local part = workspace.Part\n\n-- Түс\npart.BrickColor = BrickColor.new(\"Bright red\")\n\n-- Позиция\npart.Position = Vector3.new(0, 10, 0)\n\n-- Өлшем\npart.Size = Vector3.new(5, 1, 5)\n\n-- Мөлдірлік\npart.Transparency = 0.5",
+          "tips": [
+            "workspace — game.Workspace-тің қысқасы",
+            "Vector3.new(x, y, z) — 3D координат"
+          ]
+        },
+        {
+          "id": "10",
+          "title": "Events — оқиғалар",
+          "duration": "18 мин",
+          "description": "Touched, ClickDetector, PlayerAdded.",
+          "videoId": "PLACEHOLDER_10",
+          "steps": [
+            "event:Connect(function() end) — оқиғаны тыңдайды",
+            ".Touched — бір нәрсе тиген кезде",
+            "ClickDetector — шертілген кезде",
+            "Players.PlayerAdded — жаңа ойыншы кірген кезде"
+          ],
+          "code": "local part = workspace.Part\n\n-- Ойыншы тиген кезде\npart.Touched:Connect(function(hit)\n    local char = hit.Parent\n    local humanoid = char:FindFirstChild(\"Humanoid\")\n    if humanoid then\n        print(char.Name .. \" тиді!\")\n        part.BrickColor = BrickColor.new(\"Bright green\")\n    end\nend)\n\n-- Ойыншы кірген кезде\ngame.Players.PlayerAdded:Connect(function(player)\n    print(player.Name .. \" кірді\")\nend)",
+          "tips": [
+            "hit.Parent — тиген объектінің parent-і",
+            "FindFirstChild() — объект бар-жоғын тексереді"
+          ]
+        },
+        {
+          "id": "11",
+          "title": "Server / Client",
+          "duration": "20 мин",
+          "description": "RemoteEvent — сервер мен LocalScript байланысы.",
+          "videoId": "PLACEHOLDER_11",
+          "steps": [
+            "ServerScript — ServerScriptService ішінде",
+            "LocalScript — StarterPlayerScripts ішінде",
+            "RemoteEvent — ReplicatedStorage ішінде",
+            "FireServer() / OnServerEvent — байланыс"
+          ],
+          "code": "-- ① ReplicatedStorage > RemoteEvent жасап қой\n\n-- ② SERVER SCRIPT\nlocal event = game.ReplicatedStorage.MyEvent\nevent.OnServerEvent:Connect(function(player, data)\n    print(player.Name .. \": \" .. tostring(data))\nend)\n\n-- ③ LOCAL SCRIPT\nlocal event = game.ReplicatedStorage.MyEvent\ntask.wait(2)\nevent:FireServer(\"Сәлем!\")",
+          "tips": [
+            "RemoteFunction — жауап күтіп жіберу үшін",
+            "FireAllClients() — барлық ойыншыға"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mexanikalar",
+      "number": 4,
+      "title": "Механикалар",
+      "description": "GUI, Leaderboard, DataStore, жариялау",
+      "icon": "gamepad-2",
+      "lessons": [
+        {
+          "id": "12",
+          "title": "GUI — интерфейс",
+          "duration": "20 мин",
+          "description": "TextLabel, TextButton, Frame.",
+          "videoId": "PLACEHOLDER_12",
+          "steps": [
+            "StarterGui → + → ScreenGui → Frame → TextButton",
+            "AnchorPoint + Position — орналасуды реттейді",
+            "TextScaled = true — мәтін өлшемі автоматты",
+            "MouseButton1Click — шертілген кезде"
+          ],
+          "code": "local button = script.Parent\nlocal label = button.Parent.ScoreLabel\nlocal count = 0\n\nbutton.MouseButton1Click:Connect(function()\n    count += 1\n    label.Text = \"Ұпай: \" .. count\n    button.BackgroundColor3 = Color3.fromRGB(0, 200, 100)\n    task.wait(0.1)\n    button.BackgroundColor3 = Color3.fromRGB(50, 50, 60)\nend)",
+          "tips": [
+            "AutomaticSize — мазмұнға қарай өлшем реттеледі",
+            "ZIndex — қай GUI жоғарыда екенін белгілейді"
+          ]
+        },
+        {
+          "id": "13",
+          "title": "Leaderboard",
+          "duration": "15 мин",
+          "description": "Ойыншылардың ұпайын санап, экранда көрсету.",
+          "videoId": "PLACEHOLDER_13",
+          "steps": [
+            "'leaderstats' атты Folder — міндетті атау",
+            "Folder-ді Player-ге Parent ретінде бер",
+            "IntValue немесе NumberValue — ұпай мәні",
+            ".Value += 10 — ұпай қосу"
+          ],
+          "code": "game.Players.PlayerAdded:Connect(function(player)\n    local stats = Instance.new(\"Folder\")\n    stats.Name = \"leaderstats\"\n    stats.Parent = player\n\n    local score = Instance.new(\"IntValue\")\n    score.Name = \"Ұпай\"\n    score.Value = 0\n    score.Parent = stats\nend)\n\n-- Монета тиген кезде ұпай қос\nworkspace.Coin.Touched:Connect(function(hit)\n    local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n    if player then\n        player.leaderstats[\"Ұпай\"].Value += 10\n    end\nend)",
+          "tips": [
+            "'leaderstats' атауы дәл осылай болу керек",
+            "GetPlayerFromCharacter() — character-ден player-ді табады"
+          ]
+        },
+        {
+          "id": "14",
+          "title": "DataStore",
+          "duration": "22 мин",
+          "description": "Ойыншының деректерін серверлерде сақтау.",
+          "videoId": "PLACEHOLDER_14",
+          "steps": [
+            "Game Settings → Security → Enable Studio Access to API Services",
+            "DataStoreService — деректер сақтайтын қызмет",
+            "GetAsync(key) — жүктеу, SetAsync(key, value) — сақтау",
+            "PlayerRemoving — шыққанда сақтауды іске қос"
+          ],
+          "code": "local DS = game:GetService(\"DataStoreService\")\nlocal store = DS:GetDataStore(\"PlayerScores\")\n\ngame.Players.PlayerAdded:Connect(function(player)\n    local key = \"player_\" .. player.UserId\n    local ok, saved = pcall(function()\n        return store:GetAsync(key)\n    end)\n    if ok and saved then\n        player.leaderstats[\"Ұпай\"].Value = saved\n    end\nend)\n\ngame.Players.PlayerRemoving:Connect(function(player)\n    local key = \"player_\" .. player.UserId\n    pcall(function()\n        store:SetAsync(key, player.leaderstats[\"Ұпай\"].Value)\n    end)\nend)",
+          "tips": [
+            "pcall() — қате болса ойын бұзылмайды",
+            "UserId — ойыншының тұрақты бірегей ID-ы"
+          ]
+        },
+        {
+          "id": "15",
+          "title": "Ойынды жариялау",
+          "duration": "10 мин",
+          "description": "Дайын ойынды Roblox-қа шығару.",
+          "videoId": "PLACEHOLDER_15",
+          "steps": [
+            "File → Publish to Roblox",
+            "Атауды, сипаттаманы, thumbnail-ды толтыр",
+            "Private-тан бастап тест жаса",
+            "Public → миллиондаған адам ойнай алады"
+          ],
+          "tips": [
+            "Thumbnail ойынға кірушілер санына үлкен әсер етеді",
+            "Update: Publish to Roblox-ты қайта бас"
+          ]
+        }
+      ]
+    }
+  ],
+  "reference": {
+    "tabs": [
+      {
+        "id": "ready",
+        "title": "Дайын кодтар",
+        "icon": "clipboard-copy",
+        "subtitle": "Копировать → Script-ке Paste → Ойын дайын!",
+        "scripts": [
+          {
+            "number": 0,
+            "title": "Kill Brick",
+            "where": "Script → Part ішінде",
+            "desc": "Ойыншы тиген кезде өлтіреді",
+            "code": "-- Kill Brick\nscript.Parent.Touched:Connect(function(hit)\n    local humanoid = hit.Parent:FindFirstChild(\"Humanoid\")\n    if humanoid then\n        humanoid.Health = 0\n    end\nend)"
+          },
+          {
+            "number": 1,
+            "title": "Есік",
+            "where": "Script → Есік (Part) ішінде",
+            "desc": "Ойыншы тиген кезде есік 3 секунд ашылады",
+            "code": "-- Есік\nlocal door = script.Parent\nlocal open = false\n\ndoor.Touched:Connect(function(hit)\n    if hit.Parent:FindFirstChild(\"Humanoid\") and not open then\n        open = true\n        door.Transparency = 0.8\n        door.CanCollide = false\n        task.wait(3)\n        door.Transparency = 0\n        door.CanCollide = true\n        open = false\n    end\nend)"
+          },
+          {
+            "number": 2,
+            "title": "Монета жинау",
+            "where": "Script → Монета (Part) ішінде",
+            "desc": "Тиген кезде ұпай беріп, монета жоғалады — 5 секундта қайта пайда болады",
+            "code": "-- Монета жинау\n-- leaderstats + 'Ұпай' IntValue болу керек!\nlocal coin = script.Parent\nlocal collected = false\n\ncoin.Touched:Connect(function(hit)\n    if collected then return end\n    local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n    if player then\n        collected = true\n        player.leaderstats[\"Ұпай\"].Value += 10\n        coin.Transparency = 1\n        coin.CanCollide = false\n        task.wait(5)\n        coin.Transparency = 0\n        coin.CanCollide = true\n        collected = false\n    end\nend)"
+          },
+          {
+            "number": 3,
+            "title": "Jump Pad",
+            "where": "Script → Part ішінде",
+            "desc": "Ойыншыны жоғары лақтырады",
+            "code": "-- Jump Pad\nscript.Parent.Touched:Connect(function(hit)\n    local rootPart = hit.Parent:FindFirstChild(\"HumanoidRootPart\")\n    local humanoid = hit.Parent:FindFirstChild(\"Humanoid\")\n    if humanoid and rootPart then\n        local bv = Instance.new(\"BodyVelocity\")\n        bv.Velocity = Vector3.new(0, 80, 0)\n        bv.MaxForce = Vector3.new(0, math.huge, 0)\n        bv.Parent = rootPart\n        game:GetService(\"Debris\"):AddItem(bv, 0.1)\n    end\nend)"
+          },
+          {
+            "number": 4,
+            "title": "Speed Boost",
+            "where": "Script → Part ішінде",
+            "desc": "5 секунд жылдамдық береді, содан кейін стандарт жылдамдыққа қайтады",
+            "code": "-- Speed Boost\nlocal boosted = {}\n\nscript.Parent.Touched:Connect(function(hit)\n    local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n    if player and not boosted[player.UserId] then\n        local hum = hit.Parent:FindFirstChild(\"Humanoid\")\n        if hum then\n            boosted[player.UserId] = true\n            hum.WalkSpeed = 50\n            task.wait(5)\n            hum.WalkSpeed = 16\n            boosted[player.UserId] = nil\n        end\n    end\nend)"
+          },
+          {
+            "number": 5,
+            "title": "Checkpoint",
+            "where": "Script → Checkpoint (Part) ішінде",
+            "desc": "Ойыншы тиген жерде respawn болады, checkpoint жасылға боялады",
+            "code": "-- Checkpoint\nlocal checkpoint = script.Parent\nlocal reached = {}\n\ncheckpoint.Touched:Connect(function(hit)\n    local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n    if player and not reached[player.UserId] then\n        reached[player.UserId] = true\n        player.RespawnLocation = checkpoint\n        checkpoint.BrickColor = BrickColor.new(\"Bright green\")\n    end\nend)"
+          },
+          {
+            "number": 6,
+            "title": "Телепорт",
+            "where": "Script → Телепорт (Part) ішінде",
+            "desc": "Ойыншы тиген кезде Destination атты Part-қа телепортайды",
+            "code": "-- Телепорт\n-- Workspace-та 'Destination' атты Part болу керек!\nlocal dest = workspace.Destination\nlocal cooldown = {}\n\nscript.Parent.Touched:Connect(function(hit)\n    local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n    if player and not cooldown[player.UserId] then\n        local hrp = hit.Parent:FindFirstChild(\"HumanoidRootPart\")\n        if hrp then\n            cooldown[player.UserId] = true\n            hrp.CFrame = dest.CFrame + Vector3.new(0, 3, 0)\n            task.wait(1)\n            cooldown[player.UserId] = nil\n        end\n    end\nend)"
+          },
+          {
+            "number": 7,
+            "title": "Leaderstats",
+            "where": "Script → ServerScriptService ішінде",
+            "desc": "Барлық ойыншыда Ұпай санауышы пайда болады",
+            "code": "-- Leaderstats жүйесі\ngame.Players.PlayerAdded:Connect(function(player)\n    local stats = Instance.new(\"Folder\")\n    stats.Name = \"leaderstats\"\n    stats.Parent = player\n\n    local score = Instance.new(\"IntValue\")\n    score.Name = \"Ұпай\"\n    score.Value = 0\n    score.Parent = stats\n\n    local level = Instance.new(\"IntValue\")\n    level.Name = \"Деңгей\"\n    level.Value = 1\n    level.Parent = stats\nend)"
+          },
+          {
+            "number": 8,
+            "title": "Күн/Түн циклі",
+            "where": "Script → ServerScriptService ішінде",
+            "desc": "Ойында автоматты күн мен түн ауысады",
+            "code": "-- Күн / Түн циклі\nlocal lighting = game:GetService(\"Lighting\")\n\nwhile true do\n    -- Күн (6:00 ден 20:00 дейін)\n    for hour = 6, 20 do\n        lighting.ClockTime = hour\n        task.wait(1)\n    end\n    -- Түн (20:00 ден 30:00 дейін = 6:00 ертеңіне)\n    for hour = 20, 30 do\n        lighting.ClockTime = hour % 24\n        task.wait(0.5)\n    end\nend"
+          },
+          {
+            "number": 9,
+            "title": "Ойыншыны кішірейту",
+            "where": "Script → Part ішінде",
+            "desc": "Ойыншы тиген кезде кішірейеді, 5 секундта қалпына келеді",
+            "code": "-- Кішірейту эффектісі\nlocal shrunk = {}\n\nscript.Parent.Touched:Connect(function(hit)\n    local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n    if player and not shrunk[player.UserId] then\n        local hum = hit.Parent:FindFirstChild(\"Humanoid\")\n        if hum then\n            shrunk[player.UserId] = true\n            hum.BodyDepthScale.Value = 0.4\n            hum.BodyHeightScale.Value = 0.4\n            hum.BodyWidthScale.Value = 0.4\n            task.wait(5)\n            hum.BodyDepthScale.Value = 1\n            hum.BodyHeightScale.Value = 1\n            hum.BodyWidthScale.Value = 1\n            shrunk[player.UserId] = nil\n        end\n    end\nend)"
+          },
+          {
+            "number": 10,
+            "title": "Leaderstats + DataStore",
+            "where": "Script → ServerScriptService ішінде",
+            "desc": "Толық ұпай жүйесі — сақтайды, жүктейді. Ойыншы қайта кірсе ұпайы сақталған",
+            "code": "-- Толық Leaderstats + DataStore жүйесі\nlocal DS = game:GetService(\"DataStoreService\")\nlocal store = DS:GetDataStore(\"GameData_v1\")\n\ngame.Players.PlayerAdded:Connect(function(player)\n    -- Leaderboard\n    local stats = Instance.new(\"Folder\")\n    stats.Name = \"leaderstats\"\n    stats.Parent = player\n    local score = Instance.new(\"IntValue\")\n    score.Name = \"Ұпай\"\n    score.Value = 0\n    score.Parent = stats\n\n    -- Жүктеу\n    local ok, saved = pcall(function()\n        return store:GetAsync(\"score_\" .. player.UserId)\n    end)\n    if ok and saved then score.Value = saved end\nend)\n\ngame.Players.PlayerRemoving:Connect(function(player)\n    local score = player.leaderstats and player.leaderstats[\"Ұпай\"]\n    if score then\n        pcall(function()\n            store:SetAsync(\"score_\" .. player.UserId, score.Value)\n        end)\n    end\nend)\n\n-- Сервер жабылғанда да сақтайды\ngame:BindToClose(function()\n    for _, player in ipairs(game.Players:GetPlayers()) do\n        local score = player.leaderstats and player.leaderstats[\"Ұпай\"]\n        if score then\n            pcall(function()\n                store:SetAsync(\"score_\" .. player.UserId, score.Value)\n            end)\n        end\n    end\nend)"
+          }
+        ]
+      },
+      {
+        "id": "ai",
+        "title": "AI Промпттар",
+        "icon": "bot",
+        "subtitle": "ChatGPT / Claude-ға беретін дайын сұрақтар — Копировать → беріп жібер",
+        "prompts": [
+          {
+            "title": "Жалпы шаблон",
+            "tag": "Кез-келген код",
+            "text": "Roblox Studio үшін Lua скрипт жаз. [НЕ ЖАСАУ КЕРЕК]. Қай Script-ке (ServerScript/LocalScript) салу керектігін айт. Код іші қысқа қазақша коментарийлермен болсын."
+          },
+          {
+            "title": "Монета жинау",
+            "tag": "Ойын механикасы",
+            "text": "Roblox Studio-да ойыншы монета деп аталатын Part-қа тиген кезде leaderstats ішіндегі 'Ұпай' IntValue-ге 10 қосылатын ServerScript жаз. Монета тиген соң 5 секундқа жоғалып, қайта пайда болсын. Код қысқа болсын."
+          },
+          {
+            "title": "GUI батырмасы",
+            "tag": "Интерфейс",
+            "text": "Roblox Studio-да ScreenGui ішіндегі TextButton батырмасы басылған кезде экранда 'Ұпай: X' деген мәтін жаңаратын LocalScript жаз. Ұпай батырма басылған сайын +1 болсын."
+          },
+          {
+            "title": "Ойыншыны телепортациялау",
+            "tag": "Механика",
+            "text": "Roblox Studio-да ойыншы 'Portal' деп аталатын Part-қа тиген кезде оны Workspace-тегі 'Destination' Part-қа телепортайтын ServerScript жаз. Бір рет тиген соң 1 секунд cooldown болсын."
+          },
+          {
+            "title": "Дыбыс қосу",
+            "tag": "Дыбыс",
+            "text": "Roblox Studio-да ойыншы Part-қа тиген кезде сол Part ішіндегі Sound ойнататын LocalScript жаз. Sound ID орнына placeholder қой және оны өзгертуге нұсқау бер."
+          },
+          {
+            "title": "Кері санауыш таймер",
+            "tag": "GUI + Механика",
+            "text": "Roblox Studio-да 60 секундтық кері санауыш жаса. Таймер экранда ScreenGui ішіндегі TextLabel-да көрсетілсін. Уақыт бітсе 'Ойын аяқталды!' деген мәтін шықсын. ServerScript + LocalScript болсын."
+          },
+          {
+            "title": "Бонус зона",
+            "tag": "Ойын аймағы",
+            "text": "Roblox Studio-да ойыншы белгіленген аймаққа (Part) кірген кезде жылдамдығы 2 есе артатын, шыққан кезде қалпына келетін ServerScript жаз. Аймақ жарқырап тұрсын (Neon material)."
+          },
+          {
+            "title": "Ойынды debug ету",
+            "tag": "Debugging",
+            "text": "Менің Roblox Studio скриптімде қате бар. Output-та [ҚАТЕ МӘТІНІ] деп шығады. Скрипт: [КОДТЫ ОСЫ ЖЕРГЕ КОП-ПЕЙСТ ЕТ]. Қатені тап және түсіндір."
+          }
+        ]
+      }
+    ]
+  },
+  "studentGames": [],
+  "graduationPack": {
+    "title": "Graduation Pack",
+    "subtitle": "Курсты 100% аяқтағандарға берілетін 5 эксклюзив скрипт",
+    "scripts": [
+      {
+        "number": "G1",
+        "title": "Inventory жүйесі",
+        "desc": "Ойыншы заттар жинайды, inventory GUI-да көрсетіледі",
+        "where": "Script + LocalScript",
+        "code": "-- INVENTORY ЖҮЙЕСІ\n-- ReplicatedStorage > InventoryEvent (RemoteEvent)\n-- ReplicatedStorage > Items (Folder) > Item (Part) - заттар\n\n-- SERVER SCRIPT (ServerScriptService)\nlocal event = game.ReplicatedStorage.InventoryEvent\n\ngame.Players.PlayerAdded:Connect(function(player)\n    local inv = Instance.new(\"Folder\")\n    inv.Name = \"Inventory\"\n    inv.Parent = player\nend)\n\nfor _, item in ipairs(workspace.Items:GetChildren()) do\n    item.Touched:Connect(function(hit)\n        local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n        if player then\n            local inv = player:FindFirstChild(\"Inventory\")\n            if inv then\n                local slot = Instance.new(\"StringValue\")\n                slot.Name = item.Name\n                slot.Value = item.Name\n                slot.Parent = inv\n                item:Destroy()\n                event:FireClient(player, player.Inventory:GetChildren())\n            end\n        end\n    end)\nend\n\n-- LOCAL SCRIPT (StarterPlayerScripts)\nlocal event = game.ReplicatedStorage.InventoryEvent\nlocal gui = script.Parent -- ScreenGui\n\nevent.OnClientEvent:Connect(function(items)\n    local list = gui.Frame.ItemList\n    list:ClearAllChildren()\n    for _, item in ipairs(items) do\n        local label = Instance.new(\"TextLabel\")\n        label.Text = item.Name\n        label.Size = UDim2.new(1, 0, 0, 30)\n        label.BackgroundColor3 = Color3.fromRGB(30, 50, 80)\n        label.TextColor3 = Color3.new(1,1,1)\n        label.Parent = list\n    end\nend)"
+      },
+      {
+        "number": "G2",
+        "title": "Shop жүйесі",
+        "desc": "Ойын ішіндегі дүкен — ұпайға зат сатып алу",
+        "where": "Script + LocalScript",
+        "code": "-- SHOP ЖҮЙЕСІ\n-- leaderstats + 'Ұпай' IntValue болу керек!\n-- ReplicatedStorage > BuyEvent (RemoteEvent)\n\nlocal ITEMS = {\n    SpeedBoost = { price = 50, desc = \"Жылдамдық x2 (30 сек)\" },\n    JumpBoost  = { price = 30, desc = \"Биік секіру (30 сек)\" },\n    Shield     = { price = 100, desc = \"Зиян алмайсың (10 сек)\" },\n}\n\n-- SERVER SCRIPT\nlocal buyEvent = game.ReplicatedStorage.BuyEvent\n\nbuyEvent.OnServerEvent:Connect(function(player, itemName)\n    local item = ITEMS[itemName]\n    if not item then return end\n    local score = player.leaderstats[\"Ұпай\"]\n    if score.Value >= item.price then\n        score.Value -= item.price\n        -- Заттың эффектісін қос\n        if itemName == \"SpeedBoost\" then\n            local hum = player.Character:FindFirstChild(\"Humanoid\")\n            if hum then hum.WalkSpeed = 32 end\n            task.delay(30, function() if hum then hum.WalkSpeed = 16 end end)\n        end\n        buyEvent:FireClient(player, true, itemName .. \" сатып алынды!\")\n    else\n        buyEvent:FireClient(player, false, \"Ұпай жетпейді\")\n    end\nend)"
+      },
+      {
+        "number": "G3",
+        "title": "Pet жүйесі",
+        "desc": "Ойыншыны ізбасар жануар ереді",
+        "where": "LocalScript — StarterCharacterScripts",
+        "code": "-- PET ЖҮЙЕСІ (LocalScript — StarterCharacterScripts)\n-- Workspace > Pets > Cat (Model) болу керек\n\nlocal player = game.Players.LocalPlayer\nlocal char = script.Parent\nlocal hrp = char:WaitForChild(\"HumanoidRootPart\")\n\n-- Pet-ті clone жасаймыз\nlocal petTemplate = game.ReplicatedStorage:WaitForChild(\"Pets\"):WaitForChild(\"Cat\")\nlocal pet = petTemplate:Clone()\npet.Parent = workspace\n\nlocal offset = Vector3.new(3, 0, 0) -- оңға 3 бірлік\n\ngame:GetService(\"RunService\").Heartbeat:Connect(function(dt)\n    if char and hrp then\n        local targetPos = hrp.Position + hrp.CFrame.RightVector * 3\n        -- Smooth қозғалыс\n        if pet.PrimaryPart then\n            pet:SetPrimaryPartCFrame(\n                pet.PrimaryPart.CFrame:Lerp(\n                    CFrame.new(targetPos),\n                    dt * 5\n                )\n            )\n        end\n    end\nend)\n\n-- Ойыншы өлгенде pet-ті жою\nchar:WaitForChild(\"Humanoid\").Died:Connect(function()\n    pet:Destroy()\nend)"
+      },
+      {
+        "number": "G4",
+        "title": "VIP есік",
+        "desc": "Тек VIP тегі бар ойыншыларға ашылатын есік",
+        "where": "Script — Part ішінде",
+        "code": "-- VIP ЕСІК\n-- Ойыншының leaderstats ішінде 'VIP' BoolValue болу керек\n-- Немесе GamePass арқылы тексеруге болады\n\nlocal door = script.Parent\nlocal GAMEPASS_ID = 000000 -- өз GamePass ID-іңді қой\n\nlocal MPS = game:GetService(\"MarketplaceService\")\nlocal cooldowns = {}\n\ndoor.Touched:Connect(function(hit)\n    local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n    if not player or cooldowns[player.UserId] then return end\n\n    cooldowns[player.UserId] = true\n\n    -- GamePass бар-жоғын тексер\n    local ok, hasPass = pcall(function()\n        return MPS:UserOwnsGamePassAsync(player.UserId, GAMEPASS_ID)\n    end)\n\n    if ok and hasPass then\n        -- VIP — есік ашылады\n        door.Transparency = 0.8\n        door.CanCollide = false\n        door.BrickColor = BrickColor.new(\"Bright green\")\n        task.wait(3)\n        door.Transparency = 0\n        door.CanCollide = true\n        door.BrickColor = BrickColor.new(\"Bright yellow\")\n    else\n        -- VIP емес — хабарлама\n        local hint = Instance.new(\"Hint\")\n        hint.Text = \"Бұл есік тек VIP ойыншыларға!\"\n        hint.Parent = game.Workspace\n        task.delay(3, function() hint:Destroy() end)\n    end\n\n    task.delay(1, function() cooldowns[player.UserId] = nil end)\nend)"
+      },
+      {
+        "number": "G5",
+        "title": "Деңгей жүйесі",
+        "desc": "Ұпай жинаған сайын деңгей артады, жылдамдық өседі",
+        "where": "Script — ServerScriptService",
+        "code": "-- ДЕҢГЕЙ ЖҮЙЕСІ\n-- leaderstats + Ұпай + Деңгей IntValue болу керек\n\nlocal LEVEL_THRESHOLDS = {0, 100, 250, 500, 1000, 2000, 5000}\nlocal SPEED_PER_LEVEL  = 2 -- Әр деңгейде +2 жылдамдық\n\nlocal function getLevel(score)\n    local level = 1\n    for i, threshold in ipairs(LEVEL_THRESHOLDS) do\n        if score >= threshold then level = i end\n    end\n    return level\nend\n\nlocal function updateLevel(player)\n    local stats = player:FindFirstChild(\"leaderstats\")\n    if not stats then return end\n    local score = stats[\"Ұпай\"].Value\n    local newLevel = getLevel(score)\n    local levelVal = stats[\"Деңгей\"]\n\n    if newLevel ~= levelVal.Value then\n        levelVal.Value = newLevel\n        -- Жылдамдықты жаңарт\n        local char = player.Character\n        if char then\n            local hum = char:FindFirstChild(\"Humanoid\")\n            if hum then\n                hum.WalkSpeed = 16 + (newLevel - 1) * SPEED_PER_LEVEL\n            end\n        end\n        print(player.Name .. \" → Деңгей \" .. newLevel .. \"!\")\n    end\nend\n\ngame.Players.PlayerAdded:Connect(function(player)\n    player.CharacterAdded:Connect(function()\n        task.wait(1)\n        updateLevel(player)\n    end)\n    local stats = player:WaitForChild(\"leaderstats\")\n    stats[\"Ұпай\"]:GetPropertyChangedSignal(\"Value\"):Connect(function()\n        updateLevel(player)\n    end)\nend)"
+      }
+    ]
+  },
+  "about": {
+    "title": "Сайт туралы",
+    "text": "Қазақстандағы жас разработчиктер үшін жасалды. Roblox Studio бойынша қазақша оқулық болмаған — сол олқылықты толтыру үшін осы жоба туды.",
+    "author": "Albina M.",
+    "authorRole": "Roblox разработчигі • Ab-Interactive Company",
+    "socials": [
+      {
+        "label": "Instagram",
+        "handle": "@ab.interactive",
+        "icon": "instagram",
+        "url": "https://www.instagram.com/ab.interactive",
+        "color": "#e1306c"
+      },
+      {
+        "label": "WhatsApp",
+        "handle": "+7 705 250 67 72",
+        "icon": "message-circle",
+        "url": "https://wa.me/77052506772?text=Сәлем!%20Roblox%20Studio%20курсын%20сатып%20алғым%20келеді",
+        "color": "#25d366"
+      },
+      {
+        "label": "Telegram",
+        "handle": "@ab_interactive",
+        "icon": "send",
+        "url": "https://t.me/ab_interactive",
+        "color": "#0088cc"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Жасым 12, үйрене аламын ба?",
+      "a": "Иә! Курс 10 жастан бастап арналған. Барлығы қазақша, қарапайым тілде түсіндірілген."
+    },
+    {
+      "q": "Компьютер міндетті ме?",
+      "a": "Иә, Roblox Studio тек компьютерде жұмыс істейді — Mac немесе Windows. Планшет/телефон жұмыс істемейді."
+    },
+    {
+      "q": "Ағылшынша білу керек пе?",
+      "a": "Жоқ. Сабақтардың бәрі 100% қазақша. Lua кодының кейбір сөздері ағылшынша, бірақ олар курста түсіндіріледі."
+    },
+    {
+      "q": "3 күн тегін нұсқада не бар?",
+      "a": "Барлық 15 сабақ, дайын кодтар (0–10), AI промпттар, анықтама беті — бәрі ашық. 3 күннен кейін толық нұсқаға өту керек."
+    },
+    {
+      "q": "Толық нұсқаны қалай сатып аламын?",
+      "a": "WhatsApp арқылы хабарлас: +7 705 250 67 72. Немесе Instagram: @ab.interactive. Ауыстыру 5 минутта болады."
+    },
+    {
+      "q": "3 490 ₸ — бір рет пе, жоқ ай сайын ба?",
+      "a": "Бір рет төлейсің — мәңгілік қол жетімділік. Жаңа сабақтар қосылса да, артық ақша алынбайды."
+    },
+    {
+      "q": "Ойыным сайтта қалай жарияланады?",
+      "a": "Барлық 15 сабақты бітіріп, Roblox ойыныңның сілтемесін WhatsApp арқылы жіберсең, сайттың «Оқушылардың ойындары» бөліміне қосамыз."
+    },
+    {
+      "q": "Graduation Pack дегеніміз не?",
+      "a": "Курсты 100% аяқтаған оқушыларға берілетін 5 эксклюзив скрипт: Inventory, Shop, Pet жүйесі, VIP есік, Деңгей жүйесі. Кәдімгі сабақтарға кірмейді."
+    }
+  ],
+  "testimonials": []
+}

@@ -1,0 +1,12 @@
+{
+  "name": "roblox-oqytu",
+  "version": "1.0.0",
+  "description": "Roblox Studio қазақша оқулық",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
