@@ -27,6 +27,7 @@
     <li><a href="#aniqtama" id="nav-ref" onclick="showPage('aniqtama'); return false;"></a></li>
     <li><a href="#turaly" id="nav-about" onclick="showPage('turaly'); return false;"></a></li>
   </ul>
+  <div id="nav-auth-area" class="nav-auth-area"></div>
 </nav>
 
 <!-- ═══ БАС БЕТ ════════════════════════════════════════════ -->
@@ -279,9 +280,56 @@
   <span id="footer-title"></span> &nbsp;•&nbsp; 3 күн тегін • Одан кейін 3 490 ₸ &nbsp;•&nbsp; <svg data-lucide="map-pin" style="width:13px;height:13px;vertical-align:middle"></svg> Қазақстан
 </footer>
 
+<!-- ═══ AUTH MODAL ══════════════════════════════════════════════ -->
+<div id="auth-overlay" class="auth-overlay" style="display:none;">
+  <div class="auth-modal">
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"    onclick="switchAuthTab('login')">Кіру</button>
+      <button class="auth-tab"        id="tab-register" onclick="switchAuthTab('register')">Тіркелу</button>
+    </div>
+
+    <!-- Login -->
+    <div id="auth-login-form">
+      <div class="auth-form-title">Есептік жазбаға кіру</div>
+      <div class="form-group">
+        <label>Телефон немесе Email</label>
+        <input type="text" id="login-contact" placeholder="87001234567 немесе email@test.com" autocomplete="off"/>
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" id="login-password" placeholder="••••••"/>
+      </div>
+      <div id="login-error" class="auth-error" style="display:none;"></div>
+      <button class="auth-submit-btn" onclick="submitLogin()">Кіру</button>
+      <div class="auth-switch">Тіркелмедің бе? <a href="#" onclick="switchAuthTab('register'); return false;">Тіркелу</a></div>
+    </div>
+
+    <!-- Register -->
+    <div id="auth-register-form" style="display:none;">
+      <div class="auth-form-title">Тіркелу</div>
+      <div class="form-group">
+        <label>Атың</label>
+        <input type="text" id="reg-name" placeholder="Айдар" autocomplete="off"/>
+      </div>
+      <div class="form-group">
+        <label>Телефон немесе Email</label>
+        <input type="text" id="reg-contact" placeholder="87001234567 немесе email@test.com" autocomplete="off"/>
+      </div>
+      <div class="form-group">
+        <label>Пароль (кемінде 4 таңба)</label>
+        <input type="password" id="reg-password" placeholder="••••••"/>
+      </div>
+      <div id="reg-error" class="auth-error" style="display:none;"></div>
+      <button class="auth-submit-btn" onclick="submitRegister()">Тіркелу</button>
+      <div class="auth-switch">Тіркелдің бе? <a href="#" onclick="switchAuthTab('login'); return false;">Кіру</a></div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

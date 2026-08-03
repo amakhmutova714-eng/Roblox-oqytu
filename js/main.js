@@ -310,6 +310,10 @@ function buildFooter() {
 
 /* ── PAGE NAV ────────────────────────────── */
 function showPage(id) {
+  if (id === 'sabaqtar' && !isLoggedIn()) {
+    openAuthModal('login');
+    return;
+  }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
@@ -335,6 +339,17 @@ function goToChapter(chId) {
   document.querySelectorAll('.sidebar-lessons')[ci].classList.add('open');
   showLesson(ci, 0);
   lucide.createIcons();
+}
+
+/* ── TRACK LESSON VISIT ──────────────────── */
+function trackLessonVisit(lessonId, lessonTitle) {
+  const token = getAuthToken();
+  if (!token) return;
+  fetch('/api/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ lessonId, lessonTitle })
+  }).catch(() => {});
 }
 
 /* ── SHOW LESSON ─────────────────────────── */
@@ -405,6 +420,7 @@ function showLesson(ci, li) {
   document.getElementById('btn-prev').disabled = currentLessonIndex === 0;
   document.getElementById('btn-next').disabled = currentLessonIndex === allLessons.length - 1;
 
+  trackLessonVisit(lesson.id, lesson.title);
   updateProgress();
   lucide.createIcons();
 }
