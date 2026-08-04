@@ -1430,6 +1430,39 @@ nav { display: flex; align-items: center; justify-content: space-between; flex-w
   background: rgba(56,189,248,0.15); color: var(--accent); font-size: 0.78rem; font-weight: 600;
 }
 
+.adm-premium-btn {
+  padding: 0.3rem 0.8rem; border-radius: 8px; border: 1px solid var(--card-border);
+  background: transparent; color: var(--text2); cursor: pointer; font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.adm-premium-btn.active {
+  background: rgba(251,191,36,0.15); border-color: #fbbf24; color: #fbbf24; font-weight: 600;
+}
+.adm-premium-btn:hover { border-color: #fbbf24; color: #fbbf24; }
+
+/* ── LOCKED VIDEO ───────────────────────────────────────────── */
+.video-locked {
+  background: var(--card); border: 1px solid var(--card-border);
+  border-radius: 16px; padding: 3rem 2rem; text-align: center;
+  margin-bottom: 1.5rem;
+}
+.vl-icon { color: var(--accent3); margin-bottom: 1rem; }
+.vl-icon svg { width: 48px; height: 48px; }
+.vl-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.vl-desc  { color: var(--text2); font-size: 0.9rem; margin-bottom: 1.25rem; }
+.vl-price {
+  font-size: 1.6rem; font-weight: 800; color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.vl-price span { font-size: 0.85rem; color: var(--text2); font-weight: 400; }
+.vl-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.75rem; border-radius: 12px;
+  background: #25d366; color: #fff; font-weight: 700; font-size: 1rem;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.vl-btn:hover { opacity: 0.88; color: #fff; }
+
 @media (max-width: 600px) {
   .admin-stats-row { grid-template-columns: 1fr; }
   .admin-dash-body { padding: 1rem; }

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сабақ 1 — Roblox Studio дегеніміз не?</title>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg:    #0a1628;
+      --card:  #0f2244;
+      --card2: #162d58;
+      --accent:  #38bdf8;
+      --accent2: #818cf8;
+      --accent3: #fb7185;
+      --green:   #34d399;
+      --yellow:  #fbbf24;
+      --text:    #e2e8f0;
+      --text2:   #7e9bb5;
+      --border:  rgba(56,189,248,0.18);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* BG */
+    .bg-grid {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(100px); pointer-events: none; z-index: 0;
+      animation: pulse 8s ease-in-out infinite;
+    }
+    .orb1 { width:500px;height:500px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(56,189,248,0.12),transparent);animation-delay:0s; }
+    .orb2 { width:400px;height:400px;bottom:0;left:-100px;background:radial-gradient(circle,rgba(129,140,248,0.1),transparent);animation-delay:-4s; }
+
+    @keyframes pulse { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:.85;transform:scale(1.08)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+
+    /* LAYOUT */
+    .page { position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 4rem 2rem;
+      gap: 1.5rem;
+    }
+
+    .lesson-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.28);
+      color: var(--accent); padding: 6px 20px; border-radius: 100px;
+      font-size: 0.85rem; font-weight: 600;
+      animation: fadeUp 0.6s ease both;
+    }
+    .lesson-badge svg { width:14px;height:14px; }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.08;
+      background: linear-gradient(135deg, #fff 20%, var(--accent) 55%, var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem; color: var(--text2); max-width: 520px;
+      animation: fadeUp 0.6s ease 0.2s both; line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap; justify-content: center;
+      margin-top: 1rem;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+    .hstat {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1rem 1.8rem;
+    }
+    .hstat-val {
+      font-size: 1.8rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hstat-lbl { font-size: 0.78rem; color: var(--text2); font-weight: 600; }
+
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text2); font-size: 0.78rem;
+      animation: float 2s ease-in-out infinite;
+    }
+    .scroll-hint svg { width:18px;height:18px; }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .sec-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--accent); margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sec-label svg { width:13px;height:13px; }
+    .sec-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; margin-bottom: 1rem; line-height: 1.15;
+    }
+    .sec-desc {
+      color: var(--text2); font-size: 1rem; max-width: 680px;
+      line-height: 1.75; margin-bottom: 2.5rem;
+    }
+
+    /* divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 2rem;
+    }
+
+    /* ── ROBLOX SECTION ── */
+    .roblox-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.2rem; margin-bottom: 2.5rem;
+    }
+    .roblox-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .roblox-card:hover { border-color: rgba(56,189,248,0.4); transform: translateY(-3px); }
+    .rc-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rc-icon svg { width: 22px; height: 22px; }
+    .rc-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+    .rc-desc { font-size: 0.84rem; color: var(--text2); line-height: 1.6; }
+
+    /* ── STUDIO SECTION ── */
+    .studio-flow {
+      display: flex; align-items: center; gap: 0;
+      margin-bottom: 2.5rem; flex-wrap: wrap; justify-content: center;
+    }
+    .flow-step {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.2rem 1.5rem;
+      text-align: center; min-width: 160px;
+      transition: border-color 0.2s;
+    }
+    .flow-step:hover { border-color: var(--accent2); }
+    .flow-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; font-weight: 800; color: #fff;
+      margin: 0 auto 0.7rem;
+    }
+    .flow-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 3px; }
+    .flow-desc { font-size: 0.78rem; color: var(--text2); }
+    .flow-arrow {
+      color: var(--text2); padding: 0 0.5rem; font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ── LUA SECTION ── */
+    .lua-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start;
+    }
+    .lua-points { display: flex; flex-direction: column; gap: 1rem; }
+    .lua-point {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.2rem;
+    }
+    .lua-point-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(129,140,248,0.12);
+    }
+    .lua-point-icon svg { width: 16px; height: 16px; color: var(--accent2); }
+    .lua-point-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 2px; }
+    .lua-point-desc { font-size: 0.8rem; color: var(--text2); }
+
+    .lua-code-preview {
+      background: #060e1c; border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .lcp-header {
+      padding: 10px 16px; background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.75rem; color: var(--text2); font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .lcp-header svg { width:13px;height:13px; }
+    .lcp-dots { display:flex;gap:5px; }
+    .lcp-dot { width:10px;height:10px;border-radius:50%; }
+    .lcp-code {
+      padding: 1.2rem 1.5rem;
+      font-family: 'JetBrains Mono','Fira Code',monospace;
+      font-size: 0.82rem; line-height: 2;
+    }
+    .c-comment { color: #4e6a7e; }
+    .c-keyword { color: #f0abfc; }
+    .c-func    { color: #67e8f9; }
+    .c-string  { color: #86efac; }
+    .c-num     { color: #c4b5fd; }
+    .c-var     { color: var(--text); }
+    .c-op      { color: #94a3b8; }
+
+    /* ── WHY SECTION ── */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+    }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.6rem; text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .why-card:hover { transform: translateY(-4px); border-color: rgba(56,189,248,0.4); }
+    .why-icon {
+      width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-icon svg { width: 24px; height: 24px; }
+    .why-title { font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+    .why-desc { font-size: 0.84rem; color: var(--text2); line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 5rem 2rem;
+      text-align: center; position: relative; z-index: 1;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(129,140,248,0.08));
+      border: 1px solid rgba(56,189,248,0.25);
+      border-radius: 24px; padding: 3rem 2rem;
+      max-width: 600px; margin: 0 auto;
+    }
+    .cta-icon {
+      width: 64px; height: 64px; border-radius: 18px; margin: 0 auto 1.2rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cta-icon svg { width: 28px; height: 28px; color: #fff; }
+    .cta-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.6rem; }
+    .cta-desc { color: var(--text2); font-size: 0.95rem; margin-bottom: 1.6rem; }
+    .cta-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3);
+      color: var(--green); padding: 8px 20px; border-radius: 100px;
+      font-size: 0.88rem; font-weight: 700;
+    }
+    .cta-pill svg { width:15px;height:15px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .roblox-grid { grid-template-columns: 1fr; }
+      .lua-split { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .studio-flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- ══ HERO ══ -->
+<section class="hero page">
+  <div class="lesson-badge">
+    <svg data-lucide="book-open"></svg>
+    Сабақ 1 &nbsp;•&nbsp; Кіріспе бөлімі
+  </div>
+  <h1>Roblox Studio<br>дегеніміз не?</h1>
+  <p class="hero-sub">Бүгін Roblox платформасымен және Studio редакторымен танысамыз — ойын жасаудың бастауы</p>
+
+  <div class="hero-stats">
+    <div class="hstat">
+      <span class="hstat-val">380M+</span>
+      <span class="hstat-lbl">белсенді ойыншы</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-val">тегін</span>
+      <span class="hstat-lbl">Studio орнату</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-val">Lua</span>
+      <span class="hstat-lbl">бағдарламалау тілі</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg data-lucide="chevrons-down"></svg>
+    Төмен қара
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ ROBLOX ДЕГЕНІМІЗ НЕ ══ -->
+<section class="section page">
+  <div class="sec-label"><svg data-lucide="globe"></svg> Бірінші сұрақ</div>
+  <h2 class="sec-title">Roblox дегеніміз не?</h2>
+  <p class="sec-desc">Roblox — бұл ойын жасаушылар мен ойыншылар бір жерде кездесетін алып платформа. Мұнда миллиондаған ойын бар — бәрін қарапайым адамдар жасаған.</p>
+
+  <div class="roblox-grid">
+    <div class="roblox-card">
+      <div class="rc-icon" style="background:rgba(56,189,248,0.12)"><svg data-lucide="users" style="color:var(--accent)"></svg></div>
+      <div>
+        <div class="rc-title">380M+ ойыншы</div>
+        <div class="rc-desc">Ай сайын жарты миллиардқа жуық адам Roblox-та ойнайды. Дүние жүзінде ең үлкен ойын платформаларының бірі.</div>
+      </div>
+    </div>
+    <div class="roblox-card">
+      <div class="rc-icon" style="background:rgba(129,140,248,0.12)"><svg data-lucide="gamepad-2" style="color:var(--accent2)"></svg></div>
+      <div>
+        <div class="rc-title">Миллиондаған ойын</div>
+        <div class="rc-desc">Simulator, obby, roleplay, shooting — кез келген жанрда ойын бар. Бәрін Roblox қолданушылары өздері жасаған.</div>
+      </div>
+    </div>
+    <div class="roblox-card">
+      <div class="rc-icon" style="background:rgba(52,211,153,0.12)"><svg data-lucide="dollar-sign" style="color:var(--green)"></svg></div>
+      <div>
+        <div class="rc-title">Табыс көзі</div>
+        <div class="rc-desc">Сәтті ойын жасаған разработчиктер Robux арқылы нақты ақша табады. Кейбіреулер айына миллион теңге табады.</div>
+      </div>
+    </div>
+    <div class="roblox-card">
+      <div class="rc-icon" style="background:rgba(251,113,133,0.12)"><svg data-lucide="map-pin" style="color:var(--accent3)"></svg></div>
+      <div>
+        <div class="rc-title">Қазақстаннан да болады</div>
+        <div class="rc-desc">Дүние жүзінің кез келген жерінен ойын жасап жариялауға болады. Интернет болса — жеткілікті.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ STUDIO ДЕГЕНІМІЗ НЕ ══ -->
+<section class="section page">
+  <div class="sec-label"><svg data-lucide="layers"></svg> Екінші сұрақ</div>
+  <h2 class="sec-title">Roblox Studio дегеніміз не?</h2>
+  <p class="sec-desc">Studio — Roblox ойындарын жасайтын арнайы бағдарлама. Тегін жүктеп аласың, компьютерде аш — алдыңда толық редактор дайын.</p>
+
+  <div class="studio-flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-title">Studio ашасың</div>
+      <div class="flow-desc">Компьютерде тегін бағдарлама</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-title">Дүние жасайсың</div>
+      <div class="flow-desc">Объект қоясың, жер салқындатасың</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-title">Скрипт жазасың</div>
+      <div class="flow-desc">Lua арқылы логика қосасың</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-title">Жариялайсың</div>
+      <div class="flow-desc">Бүкіл әлем ойнай алады</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ LUA ══ -->
+<section class="section page">
+  <div class="sec-label"><svg data-lucide="terminal"></svg> Үшінші сұрақ</div>
+  <h2 class="sec-title">Lua дегеніміз не?</h2>
+  <p class="sec-desc">Ойынға "миндердi" беру үшін — есік ашылсын, ойыншы өлсін, ұпай қосылсын — Lua бағдарламалау тілін қолданамыз.</p>
+
+  <div class="lua-split">
+    <div class="lua-points">
+      <div class="lua-point">
+        <div class="lua-point-icon"><svg data-lucide="zap"></svg></div>
+        <div>
+          <div class="lua-point-title">Оңай үйренуге болады</div>
+          <div class="lua-point-desc">Python немесе Java-дан әлдеқайда қарапайым. Осы курста нөлден үйренеміз.</div>
+        </div>
+      </div>
+      <div class="lua-point">
+        <div class="lua-point-icon"><svg data-lucide="code-2"></svg></div>
+        <div>
+          <div class="lua-point-title">Бір жол код — үлкен нәтиже</div>
+          <div class="lua-point-desc">Бірнеше жол жазсаң ойыншы ұша алады, телепорт болады, скор санайды.</div>
+        </div>
+      </div>
+      <div class="lua-point">
+        <div class="lua-point-icon"><svg data-lucide="graduation-cap"></svg></div>
+        <div>
+          <div class="lua-point-title">Бағдарламашылыққа кіріспе</div>
+          <div class="lua-point-desc">Lua үйренсең — басқа тілдерді де жылдам үйренесің. Бұл болашаққа инвестиция.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lua-code-preview">
+      <div class="lcp-header">
+        <div class="lcp-dots">
+          <div class="lcp-dot" style="background:#ff5f56"></div>
+          <div class="lcp-dot" style="background:#ffbd2e"></div>
+          <div class="lcp-dot" style="background:#27c93f"></div>
+        </div>
+        <svg data-lucide="terminal"></svg> Script.lua
+      </div>
+      <div class="lcp-code">
+        <div><span class="c-comment">-- Ойыншы тигенде ұпай қосу</span></div>
+        <div><span class="c-keyword">local</span> <span class="c-var">score</span> <span class="c-op">=</span> <span class="c-num">0</span></div>
+        <div>&nbsp;</div>
+        <div><span class="c-keyword">local function</span> <span class="c-func">onTouch</span><span class="c-op">()</span></div>
+        <div>&nbsp;&nbsp;<span class="c-var">score</span> <span class="c-op">=</span> <span class="c-var">score</span> <span class="c-op">+</span> <span class="c-num">1</span></div>
+        <div>&nbsp;&nbsp;<span class="c-func">print</span><span class="c-op">(</span><span class="c-string">"Ұпай: "</span> <span class="c-op">..</span> <span class="c-var">score</span><span class="c-op">)</span></div>
+        <div><span class="c-keyword">end</span></div>
+        <div>&nbsp;</div>
+        <div><span class="c-var">script</span><span class="c-op">.</span><span class="c-var">Parent</span><span class="c-op">.</span><span class="c-func">Touched</span><span class="c-op">:</span><span class="c-func">Connect</span><span class="c-op">(</span><span class="c-var">onTouch</span><span class="c-op">)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ НЕЛІКТЕН ══ -->
+<section class="section page">
+  <div class="sec-label"><svg data-lucide="star"></svg> Неліктен Roblox?</div>
+  <h2 class="sec-title">3 себеп</h2>
+  <p class="sec-desc">Неліктен дәл Roblox Studio үйрену керек?</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon" style="background:rgba(56,189,248,0.12)">
+        <svg data-lucide="download" style="color:var(--accent)"></svg>
+      </div>
+      <div class="why-title">Толықтай тегін</div>
+      <div class="why-desc">Studio-ны орнату, ойын жасау, жариялау — бәрі тегін. Бір тиын кетпейді.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon" style="background:rgba(52,211,153,0.12)">
+        <svg data-lucide="rocket" style="color:var(--green)"></svg>
+      </div>
+      <div class="why-title">Нақты нәтиже</div>
+      <div class="why-desc">Жасаған ойының дайын болады. Сілтемесін досыңа жіберсең, ол бірден ойнай алады.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon" style="background:rgba(251,191,36,0.12)">
+        <svg data-lucide="trending-up" style="color:var(--yellow)"></svg>
+      </div>
+      <div class="why-title">Болашақ мамандық</div>
+      <div class="why-desc">Roblox разработчиктерге сұраныс өсуде. Бұл дағдыны Fiverr, Upwork-та сата аласың.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-section page">
+  <div class="cta-box">
+    <div class="cta-icon"><svg data-lucide="arrow-right"></svg></div>
+    <div class="cta-title">Дайынсың ба?</div>
+    <div class="cta-desc">Келесі сабақта Studio-ны компьютеріңе орнатамыз және алғаш рет ашамыз.</div>
+    <div class="cta-pill">
+      <svg data-lucide="check-circle-2"></svg>
+      Сабақ 2 → Studio орнату
+    </div>
+  </div>
+</section>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

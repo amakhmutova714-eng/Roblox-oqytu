@@ -375,7 +375,21 @@ function showLesson(ci, li) {
 
   // Video
   const vw = document.getElementById('lv-video');
-  if (lesson.videoId && !lesson.videoId.startsWith('PLACEHOLDER')) {
+  const isFreeLesson = lesson.id === '01';
+  const canWatch     = isFreeLesson || isPremium();
+  if (!canWatch) {
+    vw.innerHTML = `
+      <div class="video-locked">
+        <div class="vl-icon">${icon('lock-keyhole', 'style="width:48px;height:48px;"')}</div>
+        <div class="vl-title">Бұл видео тек Premium оқушыларға</div>
+        <div class="vl-desc">Барлық 15 сабақтың видеосын көру үшін толық нұсқаны сатып ал</div>
+        <div class="vl-price">3 490 ₸ <span>— бір рет төлем, мәңгілік</span></div>
+        <a href="https://wa.me/77052506772?text=Сәлем!%20Roblox%20Studio%20курсын%20сатып%20алғым%20келеді%20(3%20490%20₸)"
+           target="_blank" class="vl-btn">
+          ${icon('message-circle')} WhatsApp арқылы сатып алу
+        </a>
+      </div>`;
+  } else if (lesson.videoId && !lesson.videoId.startsWith('PLACEHOLDER')) {
     vw.innerHTML = `<iframe src="https://www.youtube.com/embed/${lesson.videoId}" allowfullscreen loading="lazy"></iframe>`;
   } else {
     vw.innerHTML = `<div class="video-placeholder"><div class="play-circle">${icon('play')}</div><span>Видео жақында қосылады</span></div>`;

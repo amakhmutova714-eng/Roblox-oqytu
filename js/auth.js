@@ -1,22 +1,41 @@
-const AUTH_TOKEN_KEY = 'roblox_auth_token';
-const AUTH_NAME_KEY  = 'roblox_auth_name';
+const AUTH_TOKEN_KEY   = 'roblox_auth_token';
+const AUTH_NAME_KEY    = 'roblox_auth_name';
+const AUTH_PREMIUM_KEY = 'roblox_is_premium';
 
-function getAuthToken() { return localStorage.getItem(AUTH_TOKEN_KEY); }
-function getAuthName()  { return localStorage.getItem(AUTH_NAME_KEY);  }
+function getAuthToken()  { return localStorage.getItem(AUTH_TOKEN_KEY); }
+function getAuthName()   { return localStorage.getItem(AUTH_NAME_KEY);  }
+function isPremium()     { return localStorage.getItem(AUTH_PREMIUM_KEY) === 'true'; }
 
-function saveAuth(token, name) {
-  localStorage.setItem(AUTH_TOKEN_KEY, token);
-  localStorage.setItem(AUTH_NAME_KEY, name);
+function saveAuth(token, name, premium) {
+  localStorage.setItem(AUTH_TOKEN_KEY,   token);
+  localStorage.setItem(AUTH_NAME_KEY,    name);
+  localStorage.setItem(AUTH_PREMIUM_KEY, premium ? 'true' : 'false');
   updateNavAuthArea();
+  // Refresh premium status from server
+  refreshPremiumStatus();
 }
 
 function logout() {
   localStorage.removeItem(AUTH_TOKEN_KEY);
   localStorage.removeItem(AUTH_NAME_KEY);
+  localStorage.removeItem(AUTH_PREMIUM_KEY);
   updateNavAuthArea();
 }
 
 function isLoggedIn() { return !!getAuthToken(); }
+
+async function refreshPremiumStatus() {
+  const token = getAuthToken();
+  if (!token) return;
+  try {
+    const res = await fetch('/api/me', { headers: { 'Authorization': 'Bearer ' + token } });
+    if (!res.ok) return;
+    const data = await res.json();
+    localStorage.setItem(AUTH_PREMIUM_KEY, data.isPremium ? 'true' : 'false');
+    updateNavAuthArea();
+    if (typeof rebuildLessonView === 'function') rebuildLessonView();
+  } catch {}
+}
 
 function updateNavAuthArea() {
   const el = document.getElementById('nav-auth-area');
@@ -76,7 +95,7 @@ async function submitLogin() {
     });
     const data = await res.json();
     if (!res.ok) { showAuthError('login-error', data.error || 'Қате'); return; }
-    saveAuth(data.token, data.name);
+    saveAuth(data.token, data.name, data.isPremium);
     closeAuthModal();
   } catch { showAuthError('login-error', 'Желі қатесі'); }
 }
@@ -96,7 +115,7 @@ async function submitRegister() {
     });
     const data = await res.json();
     if (!res.ok) { showAuthError('reg-error', data.error || 'Қате'); return; }
-    saveAuth(data.token, data.name);
+    saveAuth(data.token, data.name, data.isPremium);
     closeAuthModal();
   } catch { showAuthError('reg-error', 'Желі қатесі'); }
 }
@@ -191,18 +210,40 @@ async function adminLoadActivity() {
 function adminRenderStudents(list) {
   const tbody = document.getElementById('adm-students-tbody');
   if (!list.length) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text2);padding:2rem;">Оқушы жоқ</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text2);padding:2rem;">Оқушы жоқ</td></tr>';
     return;
   }
   tbody.innerHTML = list.map(s => `
-    <tr>
+    <tr id="student-row-${s._id}">
       <td><strong>${escAuthHtml(s.name)}</strong></td>
       <td style="color:var(--text2)">${escAuthHtml(s.contact)}</td>
       <td style="color:var(--text2)">${adminFmtDate(s.registeredAt)}</td>
       <td style="color:var(--text2)">${adminFmtDate(s.lastSeenAt)}</td>
       <td><span class="adm-badge-green">${s.lessonsOpened} сабақ</span></td>
       <td><span class="adm-badge-blue">${s.totalVisits} рет</span></td>
+      <td>
+        <button class="adm-premium-btn ${s.isPremium ? 'active' : ''}"
+          onclick="adminTogglePremium('${s._id}', this)">
+          ${s.isPremium ? '⭐ Premium' : '— Тегін'}
+        </button>
+      </td>
     </tr>`).join('');
+}
+
+async function adminTogglePremium(studentId, btn) {
+  const token = getAdminToken();
+  btn.disabled = true;
+  const res = await fetch('/api/admin/toggle-premium/' + studentId, {
+    method: 'POST', headers: { 'Authorization': 'Bearer ' + token }
+  });
+  const data = await res.json();
+  btn.disabled = false;
+  if (data.isPremium !== undefined) {
+    btn.classList.toggle('active', data.isPremium);
+    btn.textContent = data.isPremium ? '⭐ Premium' : '— Тегін';
+    const student = admStudentsData.find(s => s._id == studentId);
+    if (student) student.isPremium = data.isPremium;
+  }
 }
 
 function adminRenderActivity(list) {
