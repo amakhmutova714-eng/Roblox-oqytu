@@ -115,3 +115,140 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   updateNavAuthArea();
 });
+
+/* ══════════════════════════════════════════════════════════════
+   ADMIN PANEL (embedded in main site)
+══════════════════════════════════════════════════════════════ */
+const ADMIN_TOKEN_KEY = 'roblox_admin_token';
+let admStudentsData = [];
+let admActivityData = [];
+
+function getAdminToken()  { return localStorage.getItem(ADMIN_TOKEN_KEY); }
+
+function adminPanelLogin() {
+  const pw = (document.getElementById('admin-pw-input').value || '').trim();
+  if (!pw) return;
+  fetch('/api/admin/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: pw })
+  }).then(r => r.json()).then(data => {
+    if (data.error) {
+      const el = document.getElementById('admin-login-err');
+      el.textContent = data.error;
+      el.style.display = 'block';
+      return;
+    }
+    localStorage.setItem(ADMIN_TOKEN_KEY, data.token);
+    adminShowDashboard();
+  }).catch(() => {});
+}
+
+function adminShowDashboard() {
+  document.getElementById('admin-login-wrap').style.display    = 'none';
+  document.getElementById('admin-dashboard-wrap').style.display = '';
+  adminLoadAll();
+}
+
+function adminPanelLogout() {
+  localStorage.removeItem(ADMIN_TOKEN_KEY);
+  document.getElementById('admin-login-wrap').style.display    = '';
+  document.getElementById('admin-dashboard-wrap').style.display = 'none';
+  document.getElementById('admin-pw-input').value = '';
+}
+
+function adminLoadAll() {
+  adminLoadStats();
+  adminLoadStudents();
+}
+
+async function adminLoadStats() {
+  const token = getAdminToken();
+  const res = await fetch('/api/admin/stats', { headers: { 'Authorization': 'Bearer ' + token } });
+  if (!res.ok) return;
+  const d = await res.json();
+  document.getElementById('adm-stat-students').textContent = d.totalStudents;
+  document.getElementById('adm-stat-visits').textContent   = d.totalVisits;
+  document.getElementById('adm-stat-today').textContent    = d.todayVisits;
+}
+
+async function adminLoadStudents() {
+  const token = getAdminToken();
+  const res = await fetch('/api/admin/students', { headers: { 'Authorization': 'Bearer ' + token } });
+  if (!res.ok) return;
+  admStudentsData = await res.json();
+  adminRenderStudents(admStudentsData);
+}
+
+async function adminLoadActivity() {
+  const token = getAdminToken();
+  const res = await fetch('/api/admin/activity', { headers: { 'Authorization': 'Bearer ' + token } });
+  if (!res.ok) return;
+  admActivityData = await res.json();
+  adminRenderActivity(admActivityData);
+}
+
+function adminRenderStudents(list) {
+  const tbody = document.getElementById('adm-students-tbody');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text2);padding:2rem;">Оқушы жоқ</td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(s => `
+    <tr>
+      <td><strong>${escAuthHtml(s.name)}</strong></td>
+      <td style="color:var(--text2)">${escAuthHtml(s.contact)}</td>
+      <td style="color:var(--text2)">${adminFmtDate(s.registeredAt)}</td>
+      <td style="color:var(--text2)">${adminFmtDate(s.lastSeenAt)}</td>
+      <td><span class="adm-badge-green">${s.lessonsOpened} сабақ</span></td>
+      <td><span class="adm-badge-blue">${s.totalVisits} рет</span></td>
+    </tr>`).join('');
+}
+
+function adminRenderActivity(list) {
+  const tbody = document.getElementById('adm-activity-tbody');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--text2);padding:2rem;">Тарих жоқ</td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(a => `
+    <tr>
+      <td><strong>${escAuthHtml(a.studentName)}</strong></td>
+      <td style="color:var(--text2)">${escAuthHtml(a.lessonTitle || a.lessonId)}</td>
+      <td style="color:var(--text2)">${adminFmtDate(a.visitedAt)}</td>
+    </tr>`).join('');
+}
+
+function adminFilterStudents() {
+  const q = document.getElementById('adm-student-search').value.toLowerCase();
+  adminRenderStudents(admStudentsData.filter(s =>
+    s.name.toLowerCase().includes(q) || s.contact.toLowerCase().includes(q)
+  ));
+}
+
+function adminFilterActivity() {
+  const q = document.getElementById('adm-activity-search').value.toLowerCase();
+  adminRenderActivity(admActivityData.filter(a =>
+    (a.studentName||'').toLowerCase().includes(q) ||
+    (a.lessonTitle||'').toLowerCase().includes(q)
+  ));
+}
+
+function adminShowTab(id, btn) {
+  document.getElementById('adm-tab-students').style.display = id === 'students' ? '' : 'none';
+  document.getElementById('adm-tab-activity').style.display = id === 'activity' ? '' : 'none';
+  document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (id === 'activity' && admActivityData.length === 0) adminLoadActivity();
+}
+
+function adminFmtDate(str) {
+  if (!str) return '—';
+  const d = new Date(str);
+  const p = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+function adminInitPage() {
+  if (getAdminToken()) adminShowDashboard();
+}

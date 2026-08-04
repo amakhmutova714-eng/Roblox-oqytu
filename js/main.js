@@ -320,8 +320,9 @@ function showPage(id) {
   const map = { bas: 'nav-home', sabaqtar: 'nav-lessons', aniqtama: 'nav-ref', turaly: 'nav-about' };
   const el = document.getElementById(map[id]);
   if (el) el.classList.add('active');
-  location.hash = id === 'bas' ? '' : id;
+  if (id !== 'admin') location.hash = id === 'bas' ? '' : id;
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'admin') adminInitPage();
   lucide.createIcons();
 }
 

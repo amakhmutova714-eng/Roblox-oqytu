@@ -276,8 +276,91 @@
   </section>
 </div>
 
+<!-- ═══ ADMIN PAGE ═══════════════════════════════════════════════ -->
+<div id="page-admin" class="page">
+  <!-- Admin Login -->
+  <div id="admin-login-wrap" class="admin-login-wrap">
+    <div class="admin-login-box">
+      <div class="admin-login-icon">🔐</div>
+      <h2>Admin кабинеті</h2>
+      <p>Тек Albina M. үшін</p>
+      <div class="form-group" style="margin-top:1.5rem;">
+        <label>Пароль</label>
+        <input type="password" id="admin-pw-input" placeholder="••••••" onkeydown="if(event.key==='Enter')adminPanelLogin()"/>
+      </div>
+      <div id="admin-login-err" class="auth-error" style="display:none;"></div>
+      <button class="auth-submit-btn" onclick="adminPanelLogin()">Кіру</button>
+      <div style="margin-top:1rem;text-align:center;">
+        <a href="#" onclick="showPage('bas'); return false;" style="font-size:0.85rem;color:var(--text2);">← Басты бетке</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="admin-dashboard-wrap" style="display:none;">
+    <div class="admin-dash-header">
+      <div class="admin-dash-title">🎮 Admin кабинеті</div>
+      <div style="display:flex;gap:1rem;align-items:center;">
+        <button class="admin-refresh-btn" onclick="adminLoadAll()">↻ Жаңарту</button>
+        <button class="admin-logout-btn2" onclick="adminPanelLogout()">Шығу</button>
+      </div>
+    </div>
+
+    <div class="admin-dash-body">
+      <!-- Stats -->
+      <div class="admin-stats-row">
+        <div class="admin-stat-card">
+          <div class="admin-stat-val" id="adm-stat-students">—</div>
+          <div class="admin-stat-lbl">Барлық оқушы</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-val" id="adm-stat-visits">—</div>
+          <div class="admin-stat-lbl">Барлық кіру</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-val" id="adm-stat-today">—</div>
+          <div class="admin-stat-lbl">Бүгін кіру</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="admin-tab-bar">
+        <button class="admin-tab-btn active" onclick="adminShowTab('students', this)">Оқушылар</button>
+        <button class="admin-tab-btn"        onclick="adminShowTab('activity', this)">Кіру тарихы</button>
+      </div>
+
+      <!-- Students table -->
+      <div id="adm-tab-students">
+        <input class="admin-search" id="adm-student-search" type="text" placeholder="Оқушы іздеу..." oninput="adminFilterStudents()"/>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Аты</th><th>Телефон / Email</th><th>Тіркелді</th><th>Соңғы кіру</th><th>Ашқан сабақ</th><th>Кіру саны</th></tr>
+            </thead>
+            <tbody id="adm-students-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Activity table -->
+      <div id="adm-tab-activity" style="display:none;">
+        <input class="admin-search" id="adm-activity-search" type="text" placeholder="Іздеу..." oninput="adminFilterActivity()"/>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Оқушы</th><th>Сабақ</th><th>Уақыт</th></tr>
+            </thead>
+            <tbody id="adm-activity-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <span id="footer-title"></span> &nbsp;•&nbsp; 3 күн тегін • Одан кейін 3 490 ₸ &nbsp;•&nbsp; <svg data-lucide="map-pin" style="width:13px;height:13px;vertical-align:middle"></svg> Қазақстан
+  &nbsp;&nbsp;<a href="#" onclick="showPage('admin'); return false;" style="color:var(--text2);font-size:0.75rem;opacity:0.4;">⚙</a>
 </footer>
 
 <!-- ═══ AUTH MODAL ══════════════════════════════════════════════ -->
