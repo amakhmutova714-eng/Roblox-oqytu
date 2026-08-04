@@ -133,7 +133,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   updateNavAuthArea();
+  initWelcomePopup();
 });
+
+/* ══════════════════════════════════════════════════════════════
+   WELCOME POPUP
+══════════════════════════════════════════════════════════════ */
+const WELCOME_KEY = 'roblox_welcome_agreed';
+
+function initWelcomePopup() {
+  if (localStorage.getItem(WELCOME_KEY) === 'yes') return;
+  const overlay = document.getElementById('welcome-overlay');
+  if (overlay) overlay.style.display = 'flex';
+}
+
+function welcomeCheckChange() {
+  const checked = document.getElementById('welcome-checkbox').checked;
+  const btn = document.getElementById('welcome-yes-btn');
+  btn.disabled = !checked;
+}
+
+function welcomeAgree() {
+  localStorage.setItem(WELCOME_KEY, 'yes');
+  const overlay = document.getElementById('welcome-overlay');
+  if (overlay) {
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.3s';
+    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+  }
+}
+
+function welcomeDecline() {
+  window.history.back();
+  setTimeout(() => { window.location.href = 'about:blank'; }, 300);
+}
 
 /* ══════════════════════════════════════════════════════════════
    ADMIN PANEL (embedded in main site)

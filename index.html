@@ -364,6 +364,47 @@
   &nbsp;&nbsp;<a href="#" onclick="showPage('admin'); return false;" style="color:var(--text2);font-size:0.75rem;opacity:0.4;">⚙</a>
 </footer>
 
+<!-- ═══ WELCOME POPUP ═══════════════════════════════════════════ -->
+<div id="welcome-overlay" class="welcome-overlay">
+  <div class="welcome-modal">
+    <div class="welcome-badge">🎮 Roblox Studio — Қазақша курс</div>
+    <h2 class="welcome-title">Курсқа қош келдің!</h2>
+    <p class="welcome-sub">Оқуды бастамас бұрын, осыны оқып шық:</p>
+
+    <div class="welcome-cards">
+      <div class="welcome-card">
+        <div class="wc-icon">🆓</div>
+        <div class="wc-title">Пробный сабақ</div>
+        <div class="wc-desc">1-сабақ толығымен тегін. Ұнатсаң — жалғастырасың, ұнатпасаң — ештеңе төлемейсің.</div>
+      </div>
+      <div class="welcome-card">
+        <div class="wc-icon">⭐</div>
+        <div class="wc-title">Толық нұсқа — 3 490 ₸</div>
+        <div class="wc-desc">Барлық 15 сабақ + видеосабақтар + сұраққа жауап + код сұрау. Бір рет төлем, мәңгілік.</div>
+      </div>
+      <div class="welcome-card">
+        <div class="wc-icon">📱</div>
+        <div class="wc-title">WhatsApp арқылы байланыс</div>
+        <div class="wc-desc">Толық нұсқаны сатып алу немесе сұрақ қою үшін WhatsApp-қа жаз: +7 705 250 6772</div>
+      </div>
+    </div>
+
+    <label class="welcome-agree">
+      <input type="checkbox" id="welcome-checkbox" onchange="welcomeCheckChange()"/>
+      <span>Мен курс шарттарымен және <a href="#" onclick="return false;">Пайдалану саясатымен</a> келісемін</span>
+    </label>
+
+    <div class="welcome-btns">
+      <button class="welcome-btn-yes" id="welcome-yes-btn" onclick="welcomeAgree()" disabled>
+        Иә, оқуға дайынмын →
+      </button>
+      <button class="welcome-btn-no" onclick="welcomeDecline()">
+        Жоқ, кейінірек
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ AUTH MODAL ══════════════════════════════════════════════ -->
 <div id="auth-overlay" class="auth-overlay" style="display:none;">
   <div class="auth-modal">
