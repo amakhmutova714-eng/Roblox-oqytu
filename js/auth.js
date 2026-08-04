@@ -144,7 +144,10 @@ const WELCOME_KEY = 'roblox_welcome_agreed';
 function initWelcomePopup() {
   if (localStorage.getItem(WELCOME_KEY) === 'yes') return;
   const overlay = document.getElementById('welcome-overlay');
-  if (overlay) overlay.style.display = 'flex';
+  if (overlay) {
+    overlay.style.display = 'flex';
+    if (window.lucide) lucide.createIcons();
+  }
 }
 
 function welcomeCheckChange() {

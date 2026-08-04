@@ -1321,7 +1321,7 @@ pre[class*="language-"] { background: transparent !important; }
   background: var(--bg2); border: 1px solid var(--card-border);
   border-radius: 14px; padding: 1rem 1.25rem;
 }
-.wc-icon  { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+.wc-icon  { flex-shrink: 0; margin-top: 0.1rem; width: 24px; height: 24px; }
 .wc-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
 .wc-desc  { color: var(--text2); font-size: 0.85rem; line-height: 1.5; }
 
