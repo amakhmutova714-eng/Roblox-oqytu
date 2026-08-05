@@ -25,7 +25,7 @@ function init() {
   buildStats();
   buildChapters();
   buildStudentGames();
-  buildTestimonials();
+  buildTestimonials(); // async, runs independently
   buildFAQ();
   buildLessonsPage();
   buildReference();
@@ -248,24 +248,142 @@ function showRefTab(id, btn) {
 }
 
 /* ── TESTIMONIALS ────────────────────────── */
-function buildTestimonials() {
-  const list = DATA.testimonials;
-  const el = document.getElementById('testimonials-grid');
-  if (!list || list.length === 0) {
+let reviewsData = [];
+let selectedStars = 5;
+
+function starsHTML(count, interactive = false) {
+  return Array.from({length: 5}, (_, i) => {
+    if (interactive) {
+      return `<svg data-lucide="star" class="star-icon ${i < count ? 'star-filled' : 'star-empty'} review-star" data-star="${i + 1}" style="cursor:pointer;width:22px;height:22px;"></svg>`;
+    }
+    return `<svg data-lucide="star" class="star-icon ${i < count ? 'star-filled' : 'star-empty'}"></svg>`;
+  }).join('');
+}
+
+function renderReviews() {
+  const el = document.getElementById('reviews-list');
+  if (!el) return;
+  if (reviewsData.length === 0) {
     el.innerHTML = `
       <div class="testi-empty">
         <div class="testi-empty-icon">${icon('star', 'style="width:36px;height:36px;color:#fbbf24;opacity:0.7"')}</div>
-        <div class="testi-empty-title">Бірінші пікір сенікі болсын</div>
-        <div>Курсты аяқтағаннан кейін пікіріңді жаз — осы жерде жарияланады</div>
+        <div class="testi-empty-title">Бірінші пікір сенікі болсын!</div>
       </div>`;
     return;
   }
-  el.innerHTML = `<div class="testi-grid">${list.map(t => `
+  el.innerHTML = `<div class="testi-grid">${reviewsData.map(t => `
     <div class="testi-card">
-      <div class="testi-stars">${Array.from({length:5},(_,i)=>`<svg data-lucide="${i<t.stars?'star':'star'}" class="star-icon ${i<t.stars?'star-filled':'star-empty'}"></svg>`).join('')}</div>
-      <div class="testi-text">"${t.text}"</div>
-      <div class="testi-author">— ${t.author}</div>
+      <div class="testi-stars">${starsHTML(t.stars)}</div>
+      <div class="testi-text">"${escHtml(t.text)}"</div>
+      <div class="testi-author">— ${escHtml(t.author)}</div>
     </div>`).join('')}</div>`;
+  lucide.createIcons();
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+async function buildTestimonials() {
+  const el = document.getElementById('testimonials-grid');
+  el.innerHTML = `
+    <div id="reviews-list"></div>
+    <div class="review-form-wrap">
+      <div class="review-form-title">Өз пікіріңді жаз</div>
+      <form id="review-form" class="review-form" onsubmit="submitReview(event)">
+        <div class="review-form-row">
+          <input id="review-author" class="review-input" type="text" placeholder="Атың (мысалы: Amir, 13 жас)" maxlength="60" required />
+        </div>
+        <div class="review-stars-row">
+          <span class="review-stars-label">Баға:</span>
+          <div id="review-stars-picker" class="review-stars-picker">${starsHTML(5, true)}</div>
+        </div>
+        <div class="review-form-row">
+          <textarea id="review-text" class="review-textarea" placeholder="Пікіріңді жаз..." maxlength="500" minlength="10" rows="4" required></textarea>
+          <div class="review-char-count"><span id="review-char">0</span>/500</div>
+        </div>
+        <button type="submit" class="review-submit-btn">Пікір жіберу</button>
+        <div id="review-msg" class="review-msg"></div>
+      </form>
+    </div>`;
+
+  lucide.createIcons();
+  initStarPicker();
+
+  try {
+    const res = await fetch('/api/reviews');
+    if (res.ok) reviewsData = await res.json();
+  } catch {}
+  renderReviews();
+
+  document.getElementById('review-text').addEventListener('input', function() {
+    document.getElementById('review-char').textContent = this.value.length;
+  });
+}
+
+function initStarPicker() {
+  selectedStars = 5;
+  const picker = document.getElementById('review-stars-picker');
+  if (!picker) return;
+  picker.addEventListener('mouseover', e => {
+    const star = e.target.closest('.review-star');
+    if (!star) return;
+    const n = parseInt(star.dataset.star);
+    picker.querySelectorAll('.review-star').forEach((s, i) => {
+      s.classList.toggle('star-filled', i < n);
+      s.classList.toggle('star-empty', i >= n);
+    });
+  });
+  picker.addEventListener('mouseleave', () => {
+    picker.querySelectorAll('.review-star').forEach((s, i) => {
+      s.classList.toggle('star-filled', i < selectedStars);
+      s.classList.toggle('star-empty', i >= selectedStars);
+    });
+  });
+  picker.addEventListener('click', e => {
+    const star = e.target.closest('.review-star');
+    if (!star) return;
+    selectedStars = parseInt(star.dataset.star);
+  });
+}
+
+async function submitReview(e) {
+  e.preventDefault();
+  const author = document.getElementById('review-author').value.trim();
+  const text   = document.getElementById('review-text').value.trim();
+  const msg    = document.getElementById('review-msg');
+  const btn    = document.querySelector('.review-submit-btn');
+
+  msg.textContent = '';
+  btn.disabled = true;
+  btn.textContent = 'Жіберілуде...';
+
+  try {
+    const res = await fetch('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ author, stars: selectedStars, text })
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      msg.textContent = data.error || 'Қате орын алды';
+      msg.className = 'review-msg error';
+    } else {
+      reviewsData.unshift(data);
+      renderReviews();
+      document.getElementById('review-form').reset();
+      document.getElementById('review-char').textContent = '0';
+      selectedStars = 5;
+      initStarPicker();
+      msg.textContent = 'Пікіріңіз жарияланды! Рахмет!';
+      msg.className = 'review-msg success';
+    }
+  } catch {
+    msg.textContent = 'Байланыс қатесі. Қайталап көр.';
+    msg.className = 'review-msg error';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Пікір жіберу';
 }
 
 /* ── FAQ ─────────────────────────────────── */
@@ -311,7 +429,7 @@ function buildFooter() {
 /* ── PAGE NAV ────────────────────────────── */
 function showPage(id) {
   if (id === 'sabaqtar' && !isLoggedIn()) {
-    openAuthModal('login');
+    openAuthModal('login', true);
     return;
   }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));

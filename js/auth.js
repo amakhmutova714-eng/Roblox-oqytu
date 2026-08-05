@@ -49,7 +49,10 @@ function updateNavAuthArea() {
   }
 }
 
-function openAuthModal(tab) {
+let _authOpenedForLessons = false;
+
+function openAuthModal(tab, forLessons) {
+  _authOpenedForLessons = !!forLessons;
   document.getElementById('auth-overlay').style.display = 'flex';
   switchAuthTab(tab || 'login');
   clearAuthErrors();
@@ -97,6 +100,7 @@ async function submitLogin() {
     if (!res.ok) { showAuthError('login-error', data.error || 'Қате'); return; }
     saveAuth(data.token, data.name, data.isPremium);
     closeAuthModal();
+    if (_authOpenedForLessons) showPage('sabaqtar');
   } catch { showAuthError('login-error', 'Желі қатесі'); }
 }
 
@@ -117,6 +121,7 @@ async function submitRegister() {
     if (!res.ok) { showAuthError('reg-error', data.error || 'Қате'); return; }
     saveAuth(data.token, data.name, data.isPremium);
     closeAuthModal();
+    if (_authOpenedForLessons) showPage('sabaqtar');
   } catch { showAuthError('reg-error', 'Желі қатесі'); }
 }
 
