@@ -266,6 +266,51 @@ app.get('/api/admin/stats', requireAdmin, async (req, res) => {
   }
 });
 
+// ── REVIEWS: get all ──────────────────────────────────────────
+app.get('/api/reviews', async (req, res) => {
+  if (!db) return res.json([]);
+  try {
+    const reviews = await db.collection('reviews')
+      .find({}).sort({ createdAt: -1 }).limit(100).toArray();
+    res.json(reviews);
+  } catch (e) {
+    console.error(e); res.status(500).json({ error: 'Қате' });
+  }
+});
+
+// ── REVIEWS: submit ────────────────────────────────────────────
+app.post('/api/reviews', async (req, res) => {
+  if (!db) return res.status(503).json({ error: 'Дерекқор қосылмаған' });
+  const { author, stars, text } = req.body;
+  if (!author || !text || !stars)
+    return res.status(400).json({ error: 'Барлық өрістерді толтыр' });
+  const s = parseInt(stars);
+  if (isNaN(s) || s < 1 || s > 5)
+    return res.status(400).json({ error: 'Жұлдыз 1–5 арасында болуы керек' });
+  if (author.trim().length < 2 || author.trim().length > 60)
+    return res.status(400).json({ error: 'Атың 2–60 таңба аралығында болуы керек' });
+  if (text.trim().length < 10 || text.trim().length > 500)
+    return res.status(400).json({ error: 'Пікір 10–500 таңба аралығында болуы керек' });
+  try {
+    const doc = { author: author.trim(), stars: s, text: text.trim(), createdAt: new Date() };
+    const result = await db.collection('reviews').insertOne(doc);
+    res.json({ _id: result.insertedId, ...doc });
+  } catch (e) {
+    console.error(e); res.status(500).json({ error: 'Қате орын алды' });
+  }
+});
+
+// ── ADMIN: delete review ───────────────────────────────────────
+app.delete('/api/admin/reviews/:id', requireAdmin, async (req, res) => {
+  if (!db) return res.status(503).json({ error: 'Дерекқор қосылмаған' });
+  try {
+    await db.collection('reviews').deleteOne({ _id: new ObjectId(req.params.id) });
+    res.json({ ok: true });
+  } catch (e) {
+    console.error(e); res.status(500).json({ error: 'Қате' });
+  }
+});
+
 // ── Static fallback ────────────────────────────────────────────
 app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
 app.get('*',      (req, res) => res.sendFile(path.join(__dirname, 'index.html')));

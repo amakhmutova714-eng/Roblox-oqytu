@@ -1221,6 +1221,101 @@ section { padding: 4.5rem 2rem; position: relative; z-index: 1; }
 .testi-text { font-size: 0.9rem; color: var(--text2); line-height: 1.75; margin-bottom: 14px; font-style: italic; }
 .testi-author { font-size: 0.83rem; font-weight: 700; color: var(--accent); }
 
+/* ═══ REVIEW FORM ════════════════════════════════════════════ */
+.review-form-wrap {
+  margin: 2.5rem auto 0;
+  max-width: 600px;
+  background: linear-gradient(160deg, rgba(13,30,56,0.95), rgba(18,40,72,0.85));
+  border: 1px solid rgba(96,200,255,0.2);
+  border-radius: 22px;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(96,200,255,0.05) inset;
+}
+
+.review-form-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.review-form-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.review-form-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+.review-form-sub {
+  font-size: 0.85rem;
+  color: var(--text2);
+}
+
+.review-form { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.review-form-field { display: flex; flex-direction: column; gap: 6px; }
+.review-form-field label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text2);
+}
+.review-form-field input,
+.review-form-field textarea {
+  background: var(--bg2);
+  -webkit-appearance: none;
+  border: 1px solid rgba(96,200,255,0.15);
+  border-radius: 11px;
+  color: var(--text);
+  font-size: 0.93rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  resize: vertical;
+  width: 100%;
+}
+.review-form-field input:focus,
+.review-form-field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(96,200,255,0.1);
+}
+.review-form-field input::placeholder,
+.review-form-field textarea::placeholder { color: var(--text2); opacity: 0.55; }
+
+.review-stars-picker { display: flex; gap: 5px; padding: 3px 0; }
+.review-stars-picker .review-star { transition: color 0.12s, fill 0.12s; }
+
+.review-char-count { font-size: 0.74rem; color: var(--text2); text-align: right; margin-top: 2px; }
+
+.review-submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%, var(--accent3) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(96,200,255,0.3);
+  margin-top: 0.3rem;
+}
+.review-submit-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(96,200,255,0.4);
+}
+.review-submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.review-msg { font-size: 0.86rem; min-height: 1.2em; text-align: center; padding-top: 4px; }
+.review-msg.success { color: var(--green); }
+.review-msg.error   { color: #f87171; }
+
 /* ═══ FAQ ════════════════════════════════════════════════════ */
 .faq-list {
   max-width: 760px;
@@ -1306,21 +1401,106 @@ pre[class*="language-"] { background: transparent !important; }
 .token.operator { color: #f0abfc; }
 .token.punctuation { color: #94a3b8; }
 
+/* ═══ HINT TEXT (desktop/mobile direction labels) ═══════════ */
+.hint-mobile { display: none; }
+.hint-desktop { display: inline; }
+
 /* ═══ RESPONSIVE ════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .hero { flex-direction: column; text-align: center; padding: 3rem 2rem; }
+  .hero { flex-direction: column; text-align: center; padding: 2.5rem 1.5rem 2rem; gap: 1.5rem; min-height: auto; }
   .hero-content { max-width: 100%; }
   .hero-chars { order: -1; }
   .char-solo { display: none; }
+  .hero-char-main { width: clamp(160px, 55vw, 280px); }
 }
+
 @media (max-width: 768px) {
-  .lessons-layout { grid-template-columns: 1fr; padding: 0 1rem; }
-  .sidebar-wrap { position: static; }
+  /* ── Nav ──────────────────────────────── */
   nav { padding: 0 1rem; }
   .nav-links a span { display: none; }
-  section { padding: 3rem 1rem; }
-  .scripts-grid, .prompts-grid { grid-template-columns: 1fr; padding: 0 1rem; }
-  .ref-tabs-bar { padding: 1rem 1rem 0; }
+  .nav-user-name { display: none; }          /* Аты жасырылады — тек Шығу батырмасы */
+  .nav-login-btn, .nav-logout-btn { padding: 0.4rem 0.9rem; font-size: 0.82rem; }
+
+  /* ── Hint text ────────────────────────── */
+  .hint-desktop { display: none; }
+  .hint-mobile  { display: inline; }
+
+  /* ── Stats ────────────────────────────── */
+  #stats-wrap { gap: 1.5rem !important; }
+
+  /* ── Sections ─────────────────────────── */
+  section { padding: 2.5rem 1rem; }
+
+  /* ── Page hero ────────────────────────── */
+  .page-hero { padding: 1.75rem 1rem 1.25rem; }
+  .page-hero h1 { font-size: 1.5rem; }
+
+  /* ── Lessons layout: flex, lesson area first, sidebar below ── */
+  .lessons-layout {
+    display: flex; flex-direction: column;
+    padding: 0 0.75rem; gap: 1rem; margin: 1rem auto;
+  }
+  .lesson-area  { order: 1; }
+  .sidebar-wrap { order: 2; position: static; }
+
+  /* ── Lesson content ───────────────────── */
+  #lesson-view h2 { font-size: 1.2rem; }
+  .lesson-desc { font-size: 0.88rem; }
+  .lesson-nav-arrows { gap: 0.5rem; margin-top: 1rem; }
+  .nav-arrow-btn { padding: 8px 12px; font-size: 0.82rem; }
+
+  /* ── Code blocks ──────────────────────── */
+  .code-block-wrap pre { font-size: 0.76rem !important; padding: 0.85rem 1rem !important; }
+
+  /* ── Steps / Tips ─────────────────────── */
+  .steps-block, .tips-block { padding: 1rem 1.1rem; }
+
+  /* ── Reference tabs: horizontal scroll ── */
+  .ref-tabs-bar {
+    flex-wrap: nowrap; overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; padding: 1rem 0.75rem 0; gap: 6px;
+  }
+  .ref-tabs-bar::-webkit-scrollbar { display: none; }
+  .ref-tab-btn { white-space: nowrap; flex-shrink: 0; padding: 8px 14px; font-size: 0.82rem; }
+
+  /* ── Scripts/prompts ──────────────────── */
+  .scripts-grid, .prompts-grid { grid-template-columns: 1fr; padding: 0 0.75rem; }
+
+  /* ── Locked video ─────────────────────── */
+  .video-locked { padding: 2rem 1.25rem; }
+  .vl-title { font-size: 1rem; }
+
+  /* ── Chapter cards ────────────────────── */
+  .chapters-grid { grid-template-columns: 1fr 1fr; }
+
+  /* ── Review form ──────────────────────── */
+  .review-form-wrap { padding: 1.25rem; margin-top: 1.5rem; }
+
+  /* ── About ────────────────────────────── */
+  .about-layout { grid-template-columns: 1fr; }
+  .about-char-col { display: none; }
+
+  /* ── Pricing ──────────────────────────── */
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card-featured { transform: none; }
+
+  /* ── Admin ────────────────────────────── */
+  .admin-stats-row { grid-template-columns: 1fr; }
+  .admin-dash-body { padding: 1rem; }
+  .admin-dash-header { padding: 1rem; }
+}
+
+@media (max-width: 480px) {
+  nav { padding: 0 0.6rem; height: 56px; }
+  #nav-logo-text { display: none; }          /* Logo мәтіні жасырылады, тек icon */
+  .nav-links a { padding: 6px 8px; }
+  .nav-login-btn, .nav-logout-btn { padding: 0.35rem 0.7rem; font-size: 0.8rem; }
+  .hero h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  .hero p { font-size: 0.95rem; }
+  .section-title { font-size: 1.4rem; }
+  .chapters-grid { grid-template-columns: 1fr; }
+  .lessons-layout { padding: 0 0.5rem; }
 }
 
 /* ═══ WELCOME POPUP ════════════════════════════════════════════ */

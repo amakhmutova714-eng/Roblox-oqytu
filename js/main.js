@@ -289,20 +289,26 @@ async function buildTestimonials() {
   el.innerHTML = `
     <div id="reviews-list"></div>
     <div class="review-form-wrap">
-      <div class="review-form-title">Өз пікіріңді жаз</div>
+      <div class="review-form-header">
+        <div class="review-form-icon">✍️</div>
+        <div class="review-form-title">Өз пікіріңді жаз</div>
+        <p class="review-form-sub">Сенің пікірің басқа оқушыларға көмектеседі</p>
+      </div>
       <form id="review-form" class="review-form" onsubmit="submitReview(event)">
-        <div class="review-form-row">
-          <input id="review-author" class="review-input" type="text" placeholder="Атың (мысалы: Amir, 13 жас)" maxlength="60" required />
+        <div class="review-form-field">
+          <label>Атың</label>
+          <input id="review-author" type="text" placeholder="Мысалы: Amir, 13 жас" maxlength="60" required />
         </div>
-        <div class="review-stars-row">
-          <span class="review-stars-label">Баға:</span>
+        <div class="review-form-field">
+          <label>Баға</label>
           <div id="review-stars-picker" class="review-stars-picker">${starsHTML(5, true)}</div>
         </div>
-        <div class="review-form-row">
-          <textarea id="review-text" class="review-textarea" placeholder="Пікіріңді жаз..." maxlength="500" minlength="10" rows="4" required></textarea>
+        <div class="review-form-field">
+          <label>Пікірің</label>
+          <textarea id="review-text" placeholder="Курс туралы не ойлайсың?..." maxlength="500" minlength="10" rows="4" required></textarea>
           <div class="review-char-count"><span id="review-char">0</span>/500</div>
         </div>
-        <button type="submit" class="review-submit-btn">Пікір жіберу</button>
+        <button type="submit" class="review-submit-btn">✦ Пікір жіберу</button>
         <div id="review-msg" class="review-msg"></div>
       </form>
     </div>`;
@@ -555,6 +561,10 @@ function showLesson(ci, li) {
 
   trackLessonVisit(lesson.id, lesson.title);
   updateProgress();
+  // мобильде сабақ таңдалғанда жоғарыға scroll (lesson area жоғарыда)
+  if (window.innerWidth <= 768) {
+    document.querySelector('.lesson-area')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   lucide.createIcons();
 }
 
